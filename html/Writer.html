@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="../css/styles.css"> 
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/guide.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>永创杯网页设计作品</title> 
+</head>
+<style>
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+    }
+    body {
+        overflow: hidden;
+    font-family: "SimSun", serif;
+}
+    :root {
+        --white: #fff;
+        --black: #000;
+        --bg: #f8f8f8;
+        --grey: #999;
+        --dark: #1a1a1a;
+        --light: #e6e6e6;
+        --wrapper: 1000px;
+        --blue: #00b0ff;
+    }
+
+
+/* 初始加载时的动画 */
+.tabs input:nth-of-type(2):checked + label {
+    animation: wiggle-animation 1s ease .3s;
+}
+
+/* 确保默认选中第二个标签 */
+.tabs input:nth-of-type(2) {
+    display: none !important; /* 隐藏radio按钮 */
+    position: absolute;
+    opacity: 0;
+}
+
+.tabs label:nth-of-type(2) {
+    animation: wiggle-animation 1s ease .3s;
+}
+    .wrapper { 
+        position: relative;
+        left: 50%;
+        width: var(--wrapper);
+        height: 950px;
+        transform: translate(-50%, 0);
+    }
+
+    .container {
+        position: relative;
+        top: 48%;
+        left: 55%;
+        width: 100%;
+        height: 75%;
+        background-color: var(--white);
+        transform: translate(-50%, -50%);
+        display: flex;
+    }
+
+    .left {
+        float: left;
+        width: 37.6%;
+        height: 100%;
+        border: 1px solid var(--light);
+        background-color: var(--white);
+    }
+
+    .left .top {
+        position: relative;
+        width: 100%;
+        height: 96px;
+        padding: 29px;
+    }
+
+    .left .top:after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        display: block;
+        width: 80%;
+        height: 1px;
+        content: '';
+        background-color: var(--light);
+        transform: translate(-50%, 0);
+    }
+
+    .left input {
+        float: left;
+        width: 260px;
+        height: 42px;
+        padding: 0 15px;
+        border: 1px solid var(--light);
+        background-color: #eceff1;
+        border-radius: 21px;
+        font-weight: 400;
+    }
+
+    .left input:focus {
+        outline: none;
+    }
+
+    .left a.ssearch {
+        display: block;
+        float: left;
+        width: 42px;
+        height: 42px;
+        margin-left: 10px;
+        border: 1px solid var(--light);
+        background-color: var(--blue);
+        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/name-type.png');
+        background-repeat: no-repeat;
+        background-position: top 12px left 14px;
+        border-radius: 50%;
+    }
+
+    .left .people {
+        margin-left: -1px;
+        border-right: 1px solid var(--light);
+        border-left: 1px solid var(--light);
+        width: calc(100% + 2px);
+        padding: 0;
+        list-style: none;
+        height: calc(100% - 96px);
+        overflow: hidden;
+    }
+
+    .left .people .person {
+        position: relative;
+        width: 100%;
+        padding: 12px 10% 16px;
+        cursor: pointer;
+        background-color: var(--white);
+    }
+
+    .left .people .person:after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        display: block;
+        width: 80%;
+        height: 1px;
+        content: '';
+        background-color: var(--light);
+        transform: translate(-50%, 0);
+    }
+
+    .left .people .person img {
+        float: left;
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .left .people .person .name {
+        font-size: 18px;
+        line-height: 22px;
+        color: var(--dark);
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 6;
+    }
+
+    .left .people .person .time {
+        font-size: 14px;
+        position: absolute;
+        top: 16px;
+        right: 10%;
+        padding: 0 0 5px 5px;
+        color: var(--grey);
+        background-color: var(--white);
+    }
+
+    .left .people .person .preview {
+        font-size: 14px;
+        display: inline-block;
+        overflow: hidden !important;
+        width: 70%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: var(--grey);
+    }
+
+    .left .people .person.active,
+    .left .people .person:hover {
+        margin-top: -1px;
+        margin-left: -1px;
+        padding-top: 13px;
+        border: 0;
+        background-color: var(--blue);
+        width: calc(100% + 2px);
+        padding-left: calc(10% + 1px);
+    }
+
+    .left .people .person.active span,
+    .left .people .person:hover span {
+        color: var(--white);
+        background: transparent;
+    }
+
+    .left .people .person.active:after,
+    .left .people .person:hover:after {
+        display: none;
+    }
+
+    .right {
+        position: relative;
+        float: left;
+        width: 62.4%;
+        height: 100%;
+    }
+
+    .right .top {
+        width: 100%;
+        height: 47px;
+        padding: 15px 29px;
+        background-color: #eceff1;
+    }
+
+    .right .top span {
+        font-size: 15px;
+        color: var(--grey);
+    }
+
+    .right .top span .name {
+        color: var(--dark);  
+        font-weight: 6;
+    }
+
+    .right .chat {
+        position: relative;
+        display: none; 
+        padding: 0 35px 92px;
+        border-width: 1px 1px 1px 0;
+        border-style: solid;
+        border-color: var(--light);
+        height: calc(100% - 48px); 
+        justify-content: flex-end;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .right .chat.active-chat {
+        display: flex; 
+    }
+
+    .right .write {
+        position: absolute;
+        bottom: 29px;
+        left: 30px;
+        height: 42px;
+        padding-left: 8px;
+        border: 1px solid var(--light);
+        background-color: #eceff1;
+        width: calc(100% - 58px);
+        border-radius: 5px;
+    }
+
+    .right .write input {
+        font-size: 16px;
+        float: left;
+        width: 347px;
+        height: 40px;
+        padding: 0 10px;
+        color: var(--dark);
+        border: 0;
+        outline: none;
+        background-color: #eceff1; 
+        font-weight: 400;
+    }
+
+    .right .write .write-link.attach:before { 
+        width: 20px;
+        height: 42px;
+        content: '';
+        float: right;
+        padding-left: 30px;
+        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/attachment.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .right .write .write-link.smiley:before { 
+        width: 20px;
+        height: 42px;
+        content: '';
+        float: right;
+        padding-left: 30px;
+        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/smiley.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .right .write .write-link.send:before { 
+        width: 20px;
+        height: 42px; 
+        content: '';
+        float: right;
+        padding-left: 30px;
+        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/send.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .right .bubble {
+        font-size: 16px;
+        position: relative;
+        display: inline-block;
+        clear: both;
+        margin-bottom: 8px;
+        padding: 13px 14px;
+        vertical-align: top;
+        border-radius: 5px;
+    }
+
+    .right .bubble:before {
+        position: absolute;
+        top: 19px;
+        display: block;
+        width: 8px;
+        height: 6px;
+        content: '\00a0';
+        transform: rotate(29deg) skew(-35deg);
+    }
+
+    .right .bubble.you {
+        float: left;
+        color: var(--white);
+        background-color: var(--blue);
+        align-self: flex-start;
+        animation-name: slideFromLeft;
+    }
+
+    .right .bubble.you:before {
+        left: -3px;
+        background-color: var(--blue);
+    }
+
+    .right .bubble.me {
+        float: right;
+        color: var(--dark);
+        background-color: #eceff1;
+        align-self: flex-end;
+        animation-name: slideFromRight;
+    }
+
+    .right .bubble.me:before {
+        right: -3px;
+        background-color: #eceff1;
+    }
+
+    .right .conversation-start {
+        position: relative;
+        width: 100%;
+        margin-bottom: 27px;
+        text-align: center; 
+    }
+
+    .right .conversation-start span {
+        font-size: 14px;
+        display: inline-block;
+        color: var(--grey);
+    }
+
+    .right .conversation-start span:before,
+    .right .conversation-start span:after {
+        position: absolute;
+        top: 10px;
+        display: inline-block;
+        width: 30%;
+        height: 1px;
+        content: '';
+        background-color: var(--light);
+    }
+
+    .right .conversation-start span:before {
+        left: 0;
+    }
+
+    .right .conversation-start span:after {
+        right: 0;
+    }
+
+    @keyframes slideFromLeft {
+        0% {
+            margin-left: -200px;
+            opacity: 0;
+        }
+        100% {
+            margin-left: 0;
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideFromRight {
+        0% {
+            margin-right: -200px;
+            opacity: 0;
+        }
+        100% {
+            margin-right: 0;
+            opacity: 1;
+        }
+    }
+</style>
+<body>
+   
+        <div class="content">
+            <!-- 你的页面内容 -->
+            <div class="wrapper">
+                <div class="container">
+                    <div class="left">
+                        <div class="top">
+                            <input type="text" placeholder="查找" />
+                            <a href="javascript:;" class="ssearch"></a>
+                        </div>
+                        <ul class="people">  
+                            <li class="person" data-chat="person1">
+                                <img src=" ../img/FourCard/wu.png" alt="" />
+                                <span class="name">吴承恩</span>
+                                <span class="time">申时 04:29</span>
+                                <span class="preview">嘘🤫，这话别...</span>
+                            </li>
+                            <li class="person" data-chat="person2">
+                                <img src=" ../img/FourCard/luo.png" alt="" />
+                                <span class="name">罗贯中</span>
+                                <span class="time">酉时 08:44</span>
+                                <span class="preview">“滚滚长江东...</span>
+                            </li>
+                            <li class="person" data-chat="person3">
+                                <img src=" ../img/FourCard/cao.png" alt="" />
+                                <span class="name">曹雪芹</span>
+                                <span class="time">午时 12:07</span>
+                                <span class="preview">千红一哭，万...</span>
+                            </li>
+                            <li class="person" data-chat="person4">
+                                <img src=" ../img/FourCard/shi.png" alt="" />
+                                <span class="name">施耐庵</span>
+                                <span class="time">戌时 09:49</span>
+                                <span class="preview">官逼民反是根...</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <div class="top"><span>👤: <span class="name">吴承恩</span></span></div>
+                        <div class="chat" data-chat="person1">
+                            <div class="conversation-start">
+                                <span>巳时 09:48</span>
+                            </div>
+                            <div class="bubble me">
+                                吴老师您好，我是来自2025年的读者，特别崇拜你！能不能先简单介绍一下自己？
+                            </div>
+                            <div class="bubble you">
+                                我吴承恩可是明朝“科幻第一人”！科举考到四十多岁才混个贡生，在长兴县当县丞还被诬告贪污。索性回家写《西游记》——你们现代人说的"爽文"，我五百年前就玩明白了！
+                            </div>
+                            <div class="bubble me">
+                                唐僧为什么这么弱？
+                            </div>
+                            <div class="bubble you">
+                                领导嘛！只会念经——但没他，悟空早回花果山了！</div>
+                            <div class="bubble me">
+                                吴老师,取经团队像不像职场小组？还有孙悟空大闹天宫是不是在讽刺朝廷？
+                            </div>
+                            <div class="bubble you">
+                                唐僧是空降领导，八戒是摸鱼老油条，沙僧只会说“大师兄说得对”！白龙马的话？……公司实习生！至于玉帝让猴子管蟠桃园？……玉帝炼丹不管事……明摆着是在骂那个谁……
+                            </div>
+                            <span style="text-align: center;margin-bottom: 10px; font-size: 0.8rem;color: #999;">对方撤回了一条消息</span>
+                            <div class="bubble you">
+                                嘘🤫，这话别乱传！！！
+                           </div> 
+                        </div>
+                        <div class="chat active-chat" data-chat="person2">
+                            <div class="conversation-start">
+                                <span>未时 01:18</span>
+                            </div>
+                            <div class="bubble me">
+                               罗老师您好，我是来自2025年的读者，特别崇拜你！能不能先简单介绍一下自己？
+                            </div>
+                            <div class="bubble you">
+                                老夫罗本，字贯中，元末明初人！年轻时在张士诚帐下当过幕僚，后来天下大定，索性隐居写书。《三国演义》从晋朝《三国志》扩写而来，添了些"温酒斩华雄"之类的好戏！
+                            </div>
+                            <div class="bubble me">
+                                听说您写书时遇到过困难？
+                            </div> 
+                            <div class="bubble you">
+                                最难是考据！《三国志》里关羽就一句话“刺颜良于万众中”，我扩写成“温酒斩华雄”，还让诸葛亮借东风——历史学家怕是要骂我！
+                            </div> 
+                            <div class="bubble me">
+                                现代人玩《三国杀》，您怎么看？
+                            </div> 
+                            <div class="bubble you">
+                                好！比我的书还刺激！但张飞“咆哮”技能太弱了，该改成“当阳桥吼退百万兵”！
+                            </div>
+                            <div class="bubble me">
+                                您觉得《三国演义》最大的感悟是什么？
+                            </div> 
+                            <div class="bubble you">
+                                “滚滚长江东逝水，浪花淘尽英雄——”
+                            </div>
+                        </div>
+                        <div class="chat" data-chat="person3">
+                            <div class="conversation-start">
+                                <span>辰时 08:38</span>
+                            </div>
+                            <div class="bubble me">
+                                曹老师您好，我是来自2025年的读者，特别崇拜你！能不能先简单介绍一下自己？
+                            </div>
+                            <div class="bubble you">
+                                惭愧，在下曹霑，字雪芹。本是江宁织造曹寅之孙，幼年锦衣玉食，后家道中落，半生潦倒。写《石头记》时，“举家食粥酒常赊”，可惜未能完稿便……
+                            </div>
+                            <span style="text-align: center;margin-bottom: 10px; font-size: 0.8rem;color: #999;">对方撤回了一条消息</span>
+                            <div class="bubble me">
+                                听说《红楼梦》里贾宝玉有您的影子？您写《红楼梦》时“批阅十载，增删五次”，为什么这么执着？
+                            </div> 
+                            <div class="bubble you">
+                                唉……甄士隐去，贾雨村言。宝玉的富贵闲散、黛玉的孤高自许，俱是少年往事。如今茅椽蓬牖，瓦灶绳床，写来尽是血泪。十年辛苦不寻常啊……少年时锦衣玉食，后来家破人亡，写这本书，不过是把“真事隐去”，借“假语村言”罢了
+                            </div>   
+                            <span style="text-align: center;margin-bottom: 10px; font-size: 0.8rem;color: #999;">对方撤回了一条消息</span>
+                            <span style="text-align: center;margin-bottom: 10px; font-size: 0.8rem;color: #999;">对方撤回了一条消息</span>
+                            <div class="bubble me">
+                                如果用一句话总结自己书的精髓？
+                            </div> 
+                            <div class="bubble you">
+                                千红一哭，万艳同悲。好一似食尽鸟投林，落了片白茫茫大地真干净。
+                            </div> 
+                        </div>
+                        <div class="chat" data-chat="person4">
+                            <div class="conversation-start">
+                                <span>未时 02:20</span>
+                            </div>
+                            <div class="bubble me">
+                                施老师您好，我是来自2025年的读者，特别崇拜你！能不能先简单介绍一下自己？
+                            </div> 
+                            <div class="bubble you">
+                                🍻 
+                            </div> 
+                            <div class="bubble you">
+                                老施我比罗兄小几岁，曾在钱塘当县官，见官场黑暗就辞官了。在苏州开私塾时，把宋江三十六人的故事扩写成《水浒传》，还收了罗贯中当学生呢！
+                            </div> 
+                            <div class="bubble me">
+                                施公！梁山好汉为什么最后要招安？您是不是被迫改结局？
+                            </div>
+                            <div class="bubble you">
+                                官府说我这书“煽动造反”，书商吓得不敢印！只好让宋江带兄弟征方腊……李逵喝毒酒那段，我写了三天，酒壶都摔了三个！
+                            </div>
+                            <div class="bubble me">
+                                用一句话总结《水浒传》您会怎么写？
+                            </div>
+                            <div class="bubble you">
+                                官逼民反是根，替天行道是皮！
+                            </div>
+                        </div>
+                        <div class="write">
+                            <a href="javascript:;" class="write-link attach"></a>
+                            <input type="text" />
+                            <a href="javascript:;" class="write-link smiley"></a>
+                            <a href="javascript:;" class="write-link send"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+    
+   <!-- 顶部导航栏 -->
+   <nav class="top-navbar">
+    <a class="logo">
+        <img src="../img/HomeImg/logo.png" alt="网站Logo">
+    </a>
+    <div>
+        <div class="nav-container">
+            <ul class="nav-menu">  
+                <a href="envelope.html" class="tooltip" data-tooltip="关于"><img src="../img/HomeImg/More.png" alt=""></a>
+                <a href="#" id="tutorialBtn" class="tooltip" data-tooltip="教程"><img src="../img/HomeImg/Teach.png" alt=""></a>
+                <div class="music-player">
+                  <div class="album-art">
+                      <svg class="vinyl" viewBox="0 0 100 100">
+                          <circle cx="50" cy="50" r="45" fill="#333"/>
+                          <circle cx="50" cy="50" r="15" fill="#fff"/>
+                          <circle cx="50" cy="50" r="5" fill="#333"/>
+                          <path d="M50,5 A45,45 0 0,1 95,50 A45,45 0 0,1 50,95 A45,45 0 0,1 5,50 A45,45 0 0,1 50,5 Z" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="5,5"/>
+                      </svg>
+                  </div> 
+                  <div class="controls">
+                    <button class="play-btn" id="playBtn">
+                        <svg class="play-icon" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    
+                    <div class="time" id="timeDisplay">0:00</div>
+                    
+                    <button class="mute-btn" id="muteBtn">
+                        <svg class="volume-icon" viewBox="0 0 24 24">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        </svg>
+                    </button>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!-- 登入注册 -->
+    <div class="user-profile">
+        <ul class="nav-menu">
+            <a href="#" id="openLoginModal" class="tooltip" data-tooltip="登入注册">
+                <img src="../img/HomeImg/Register.png"  >
+            </a>
+        </ul>
+        <!-- 搜索框 -->
+        <form id="content">
+            <input type="text" name="input" class="input" id="search-input">
+            <button type="reset" class="search" id="search-btn"></button>
+        </form>
+        <div class="menu-toggle">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</nav> 
+<!-- 垂直导航栏 -->
+<div class="tabs">
+    <input type="radio" name="tab" id="tab-01" />
+    <label for="tab-01">
+        <svg>
+            <use xlink:href="#icon-01" class="icon" />
+        </svg>
+        <div class="wave"></div>
+    </label>
+    <input type="radio" name="tab" id="tab-02" />
+    <label for="tab-02">
+        <svg>
+            <use xlink:href="#icon-02" class="icon" />
+        </svg>
+        <div class="wave"></div>
+    </label>
+    <input type="radio" name="tab" id="tab-03" />
+    <label for="tab-03">
+        <svg>
+            <use xlink:href="#icon-03" class="icon" />
+        </svg>
+        <div class="wave"></div>
+    </label> 
+
+<!-- SVG 图标定义 -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<symbol   viewBox="0 0 1024 1024" id="icon-01" >
+  <path d="M958.542769 540.711385c-3.702154-50.333538-13.174154-100.391385-27.451077-144.836923-21.897846-68.135385-54.567385-133.159385-92.002461-183.236924-10.24-13.666462-30.011077-16.777846-44.248616-6.971076a29.577846 29.577846 0 0 0-7.286153 42.397538c33.555692 44.839385 62.976 103.699692 82.963692 165.730462 12.839385 40.034462 21.425231 85.366154 24.753231 131.170461 12.209231 166.892308-59.372308 303.222154-197.769847 380.553846-22.665846-178.825846-167.227077-237.174154-173.883076-239.812923a32.886154 32.886154 0 0 0-27.332924 1.634462c-125.853538 67.032615-162.500923 179.515077-173.134769 242.451692-124.534154-62.838154-200.251077-181.169231-200.251077-317.558154 0-91.864615 47.694769-176.994462 145.782154-260.155077 13.036308-11.067077 26.328615-21.956923 39.620923-32.846769 72.034462-58.958769 146.589538-119.926154 184.123077-212.676923 4.115692-10.003692 7.68-19.081846 10.673231-27.273846 66.363077 44.780308 209.979077 165.671385 256.590769 396.937846 3.328 16.502154 20.027077 27.254154 37.12 24.064 17.211077-3.150769 28.455385-19.101538 25.107692-35.584C757.523692 145.073231 526.001231 18.865231 499.672615 5.415385c-0.886154-0.492308-1.811692-0.905846-2.756923-1.378462-15.694769-7.148308-34.461538-0.886154-42.141538 14.040615-2.166154 4.233846-3.190154 8.743385-3.268923 13.193847-2.953846 11.224615-15.320615 45.942154-18.116923 53.228307-31.822769 78.513231-97.142154 131.938462-166.262154 188.49477-13.587692 11.106462-27.116308 22.232615-40.467692 33.516307-110.907077 94.089846-167.128615 196.923077-167.128616 305.723077 0 175.537231 107.027692 325.513846 279.315692 391.286154a32.649846 32.649846 0 0 0 29.617231-3.190154c8.723692-5.671385 13.922462-15.222154 13.824-25.324308-0.039385-6.183385 0.472615-147.574154 130.599385-226.500923 34.363077 18.944 124.219077 82.077538 124.219077 225.378462 0 10.358154 5.454769 20.027077 14.493538 25.6 9.058462 5.572923 20.460308 6.419692 30.267077 2.107077 188.337231-81.900308 291.780923-254.227692 276.676923-460.878769M464.580923 56.083692" fill="#000000" p-id="1852"></path> 
+</symbol>
+<symbol   viewBox="0 0 1024 1024" id="icon-02">
+  <path d="M523.946667 85.333333C802.773333 85.333333 982.826667 307.541333 982.826667 511.338667c0 242.837333-197.397333 448-458.837334 448-84.16 0-150.464-16.597333-221.610666-55.402667l-88.618667 50.197333c-27.797333 8.426667-50.474667 5.162667-68.010667-9.834666-17.557333-14.997333-25.130667-34.730667-22.72-59.2a19570.688 19570.688 0 0 0 29.653334-106.368C123.008 741.76 64 656.426667 64 511.338667 64 307.541333 245.141333 85.333333 523.946667 85.333333z m-1.28 64C304.064 149.333333 128 317.12 128 522.666667c0 77.354667 24.874667 151.125333 70.634667 213.184l5.397333 7.125333 18.218667 23.509333-36.970667 128.746667a0.32 0.32 0 0 0 0.490667 0.384l113.408-63.829333 26.752 14.592C385.237333 878.72 452.544 896 522.666667 896 741.269333 896 917.333333 728.213333 917.333333 522.666667S741.269333 149.333333 522.666667 149.333333z m-192 320a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.848 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.869333 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z" fill="#111111" p-id="2008"></path> 
+</symbol>
+<symbol   viewBox="0 0 1024 1024" id="icon-03"> 
+  <path d="M900.48 85.333333C921.6 85.333333 938.666667 102.421333 938.666667 123.52v509.738667C938.666667 801.941333 801.92 938.666667 633.258667 938.666667H123.52A38.186667 38.186667 0 0 1 85.333333 900.48V390.762667C85.333333 222.058667 222.08 85.333333 390.741333 85.333333H900.48zM874.666667 149.333333H390.741333C259.498667 149.333333 152.725333 254.08 149.418667 384.512L149.333333 390.741333V874.666667h483.925334c131.242667 0 238.016-104.746667 241.322666-235.178667l0.085334-6.229333V149.333333z m-362.666667 152.896c115.84 0 209.770667 93.909333 209.770667 209.770667 0 115.84-93.909333 209.770667-209.770667 209.770667-115.84 0-209.770667-93.909333-209.770667-209.770667 0-115.84 93.909333-209.770667 209.770667-209.770667z m0 64a145.770667 145.770667 0 1 0 0 291.541334 145.770667 145.770667 0 0 0 0-291.541334z" fill="#111111" p-id="1852"></path>
+</symbol>
+</svg>
+</div>
+ <!-- 引导系统 -->
+ <div class="guide-overlay" id="guideOverlay">
+    <div class="guide-box">
+        <h3 id="guideTitle">读者引导</h3>
+        <p id="guideText">让我们了解这个页面的主要功能</p>
+        <div class="guide-progress" id="guideProgress">1/8</div>
+        <div class="guide-nav">
+            <div>
+                <button  id="prevGuideStep" disabled>上一步</button>
+                <button  id="nextGuideStep">下一步</button>
+            </div>
+            <button  id="closeGuide">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- 登录/注册模态框 -->
+<div class="modal-overlay" id="authModal">
+<div class="modal-container">
+    <div  class="close-modal" id="closeModal">&times;</div>
+
+    <div class="welcome">
+        <div class="pinkbox">
+            <div class="signup nodisplay">
+                <h1>注册</h1>
+                <form autocomplete="off">
+                    <input type="text" class="auth-input" placeholder="账户">
+                    <input type="email" class="auth-input" placeholder="邮箱">
+                    <input type="password" class="auth-input" placeholder="密码">
+                    <input type="password" class="auth-input" placeholder="确认密码">
+                    <button style="font-size: 1rem;" class="button submit">创建</button>
+                </form>
+            </div>
+            <div class="signin">
+                <h1>登录</h1>
+                <form class="more-padding" autocomplete="off">
+                    <input type="text" class="auth-input" placeholder="账户">
+                    <input type="password" class="auth-input" placeholder="密码">
+                    <div class="checkbox">
+                        <input type="checkbox" id="remember" class="auth-checkbox" />
+                        <label  style="font-size: 1rem;" for="remember">记住我</label>
+                    </div>
+                    <button style="font-size: 1rem;" class="button submit">登录</button>
+                </form>
+            </div>
+        </div>
+        <div class="leftbox">
+            <h2 class="title">探索<span>四大名著</span>世界</h2>
+            <img class="flower smaller" src="../img/HomeImg/lo.png" alt="Flower" border="0">
+            <p style="font-size: 1rem;" class="account">已有账号？</p>
+            <button style="font-size: 1rem;" class="button" id="modalSigninBtn">登录</button>
+        </div>
+        <div class="rightbox">
+            <h2 class="title">共建<span>文学</span><br>社区</h2>
+            <img class="flower" src="../img/HomeImg/re.png" alt="Flower"/>
+            <p style="font-size: 1rem;" class="account">首次光临？</p>
+            <button style="font-size: 1rem;" class="button" id="modalSignupBtn">注册</button>
+        </div>
+    </div>
+</div>
+</div>
+ 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <script src="../js/script.js"></script>
+    <script src="../js/guide.js"></script>
+    <script>
+        document.querySelector('.chat[data-chat=person2]').classList.add('active-chat');
+        document.querySelector('.person[data-chat=person2]').classList.add('active');
+
+        let friends = {
+                list: document.querySelector('ul.people'),
+                all: document.querySelectorAll('.left .person'),
+                name: ''
+            },
+            chat = {
+                container: document.querySelector('.container .right'),
+                current: null,
+                person: null,
+                name: document.querySelector('.container .right .top .name')
+            };
+
+        friends.all.forEach(f => {
+            f.addEventListener('mousedown', () => {
+                f.classList.contains('active') || setAciveChat(f);
+            });
+        });
+
+        function setAciveChat(f) {
+            friends.list.querySelector('.active').classList.remove('active');
+            f.classList.add('active');
+            chat.current = chat.container.querySelector('.active-chat');
+            chat.person = f.getAttribute('data-chat');
+            chat.current.classList.remove('active-chat');
+            chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
+            friends.name = f.querySelector('.name').innerText;
+            chat.name.innerHTML = friends.name;
+        }
+    </script>
+</body>
+</html>

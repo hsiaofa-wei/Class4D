@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="../css/styles.css"> 
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/guide.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>永创杯网页设计作品</title> 
+<style> 
+        body{
+            overflow: hidden;
+            background-color: #2f3542;
+        }
+        
+        .background-img{    
+            position: absolute;
+            width: 110%;
+            height: 95%;
+            bottom: -2vh; 
+            left: -4vh;
+            z-index: 1;
+        }
+        .frame-container {
+            position: relative;
+            width: 110%;
+            height: 100%;
+            bottom: 0;
+            left: -7vh;
+        } 
+
+        .frame-content {
+            position: absolute;
+            top: 16%; 
+            left: 10%;
+            width: 80%;
+            height: 75%;
+            background-image: url(../img/ErLongShan/back.png);
+            background-size: cover;
+            background-position: center;
+        }
+        .color-image {
+            position: absolute;
+            filter: brightness(10%);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .color-image:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+            z-index: 10;
+        } 
+        .LuZhiShen { 
+            width: auto;
+            height: 75%;
+            bottom: 11%;
+            left: 31%; 
+            z-index: 1;
+        }
+
+        .WuSong {
+            width: auto;
+            height: 75%;
+            bottom: 11%;
+            left: 51%; 
+            z-index: 2;
+        }
+
+        .ShiEn { 
+            width: auto;
+            height: 60%;
+            bottom: 11%;
+            left: 25%; 
+            z-index: 4;
+        }
+
+        .SunErNiang {
+            width: auto;
+            height: 60%;
+            bottom: 11%;
+            left: 16%; 
+            z-index: 3;
+        }
+
+        .ZhangQing {
+            width: auto;
+            height: 58%;
+            bottom: 11%;
+            left: 59%; 
+            z-index: 6;
+        }
+
+        .CaoZheng {
+            width: auto;
+            height: 70%;
+            bottom: 11%;
+            left: 67%; 
+            z-index: 5;
+        }
+
+        .YangZhi {
+            width: auto;
+            height: 65%;
+            bottom: 11%;
+            left: 42%; 
+            z-index: 7;
+        }
+
+        /* 人物卡片样式 */
+        .character-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .character-card {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            animation: fadeInUp 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .character-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        .character-portrait {
+            width: 400px; 
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #8b4513;
+            margin-right: 20px; 
+        }
+
+        .character-name {
+            color: #8b4513;
+            font-size: 28px;
+            margin: 0;
+            font-family: 'SimSun', serif;
+        }
+
+        .character-info {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            text-indent: 2em;
+            font-family: 'KaiTi', serif;
+        }
+
+        .close-character-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background: #8b4513;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-character-btn:hover {
+            background: #a0522d;
+        }
+    </style>
+</head>
+<body>
+    <div class="styled-wrapper">
+        <button class="button" onclick="window.location.href='ShzCite.html'">
+          <div class="button-box">
+            <span class="button-elem">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                <path fill="black" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+              </svg>
+            </span>
+            <span class="button-elem">
+              <svg fill="black" viewBox="0 0  24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+    </div>
+    
+    <div class="content">
+        <div class="image-container">
+            <img src="../img/ErLongShan/photoframe.png" class="background-img" alt="">
+            <div class="frame-content"></div>
+            <img src="../img/ErLongShan/LuZhiShen.png" alt="鲁智深" class="color-image LuZhiShen">
+            <img src="../img/ErLongShan/CaoZheng.png" alt="曹正" class="color-image CaoZheng">
+            <img src="../img/ErLongShan/ShiEn.png" alt="施恩" class="color-image ShiEn">
+            <img src="../img/ErLongShan/SunErNiang.png" alt="孙二娘" class="color-image SunErNiang">
+            <img src="../img/ErLongShan/ZhangQing.png" alt="张青" class="color-image ZhangQing">
+            <img src="../img/ErLongShan/WuSong.png" alt="武松" class="color-image WuSong">
+            <img src="../img/ErLongShan/YangZhi.png" alt="杨志" class="color-image YangZhi"> 
+        </div>
+    </div>
+    
+    <!-- 人物信息卡片模态框 -->
+    <div class="character-modal" id="characterModal">
+        <div class="character-card">
+            <button class="close-character-btn" id="closeCharacterBtn">×</button>
+            <div class="character-header">
+                <img class="character-portrait" id="characterPortrait" src="" alt="">
+                <h2 class="character-name" id="characterName"></h2>
+            </div>
+            <div class="character-info" id="characterInfo"></div>
+        </div>
+    </div>
+
+    <!-- 顶部导航栏 -->
+    <nav class="top-navbar">
+        <a class="logo">
+            <img src="../img/HomeImg/logo.png" alt="网站Logo">
+        </a>
+        <div>
+            <div class="nav-container">
+                <ul class="nav-menu">  
+                    <a href="envelope.html" class="tooltip" data-tooltip="关于"><img src="../img/HomeImg/More.png" alt=""></a>
+                    <a href="#" id="tutorialBtn" class="tooltip" data-tooltip="教程"><img src="../img/HomeImg/Teach.png" alt=""></a>
+                    <div class="music-player">
+                      <div class="album-art">
+                          <svg class="vinyl" viewBox="0 0 100 100">
+                              <circle cx="50" cy="50" r="45" fill="#333"/>
+                              <circle cx="50" cy="50" r="15" fill="#fff"/>
+                              <circle cx="50" cy="50" r="5" fill="#333"/>
+                              <path d="M50,5 A45,45 0 0,1 95,50 A45,45 0 0,1 50,95 A45,45 0 0,1 5,50 A45,45 0 0,1 50,5 Z" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="5,5"/>
+                          </svg>
+                      </div> 
+                      
+                      <div class="controls">
+                          <button class="play-btn" id="playBtn">
+                              <svg class="play-icon" viewBox="0 0 24 24">
+                                  <path d="M8 5v14l11-7z"/>
+                              </svg>
+                          </button>
+                          
+                          <div class="progress-container" id="progressContainer">
+                              <div class="progress-bar" id="progressBar"></div>
+                          </div>
+                          
+                          <div class="time" id="timeDisplay">0:00</div>
+                          
+                          <button class="mute-btn" id="muteBtn">
+                              <svg class="volume-icon" viewBox="0 0 24 24">
+                                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                              </svg>
+                          </button>
+                      </div>
+                </ul>
+            </div>
+        </div>
+        <!-- 登入注册 -->
+        <div class="user-profile">
+            <ul class="nav-menu">
+                <a href="#" id="openLoginModal" class="tooltip" data-tooltip="登入注册">
+                    <img src="../img/HomeImg/Register.png"  >
+                </a>
+            </ul>
+            <!-- 搜索框 -->
+            <form id="content">
+                <input type="text" name="input" class="input" id="search-input">
+                <button type="reset" class="search" id="search-btn"></button>
+            </form>
+            <div class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </nav> 
+    <!-- 垂直导航栏 -->
+    <div class="tabs">
+        <input type="radio" name="tab" id="tab-01" />
+        <label for="tab-01">
+            <svg>
+                <use xlink:href="#icon-01" class="icon" />
+            </svg>
+            <div class="wave"></div>
+        </label>
+        <input type="radio" name="tab" id="tab-02" />
+        <label for="tab-02">
+            <svg>
+                <use xlink:href="#icon-02" class="icon" />
+            </svg>
+            <div class="wave"></div>
+        </label>
+        <input type="radio" name="tab" id="tab-03" />
+        <label for="tab-03">
+            <svg>
+                <use xlink:href="#icon-03" class="icon" />
+            </svg>
+            <div class="wave"></div>
+        </label> 
+    
+    <!-- SVG 图标定义 -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol   viewBox="0 0 1024 1024" id="icon-01" >
+      <path d="M958.542769 540.711385c-3.702154-50.333538-13.174154-100.391385-27.451077-144.836923-21.897846-68.135385-54.567385-133.159385-92.002461-183.236924-10.24-13.666462-30.011077-16.777846-44.248616-6.971076a29.577846 29.577846 0 0 0-7.286153 42.397538c33.555692 44.839385 62.976 103.699692 82.963692 165.730462 12.839385 40.034462 21.425231 85.366154 24.753231 131.170461 12.209231 166.892308-59.372308 303.222154-197.769847 380.553846-22.665846-178.825846-167.227077-237.174154-173.883076-239.812923a32.886154 32.886154 0 0 0-27.332924 1.634462c-125.853538 67.032615-162.500923 179.515077-173.134769 242.451692-124.534154-62.838154-200.251077-181.169231-200.251077-317.558154 0-91.864615 47.694769-176.994462 145.782154-260.155077 13.036308-11.067077 26.328615-21.956923 39.620923-32.846769 72.034462-58.958769 146.589538-119.926154 184.123077-212.676923 4.115692-10.003692 7.68-19.081846 10.673231-27.273846 66.363077 44.780308 209.979077 165.671385 256.590769 396.937846 3.328 16.502154 20.027077 27.254154 37.12 24.064 17.211077-3.150769 28.455385-19.101538 25.107692-35.584C757.523692 145.073231 526.001231 18.865231 499.672615 5.415385c-0.886154-0.492308-1.811692-0.905846-2.756923-1.378462-15.694769-7.148308-34.461538-0.886154-42.141538 14.040615-2.166154 4.233846-3.190154 8.743385-3.268923 13.193847-2.953846 11.224615-15.320615 45.942154-18.116923 53.228307-31.822769 78.513231-97.142154 131.938462-166.262154 188.49477-13.587692 11.106462-27.116308 22.232615-40.467692 33.516307-110.907077 94.089846-167.128615 196.923077-167.128616 305.723077 0 175.537231 107.027692 325.513846 279.315692 391.286154a32.649846 32.649846 0 0 0 29.617231-3.190154c8.723692-5.671385 13.922462-15.222154 13.824-25.324308-0.039385-6.183385 0.472615-147.574154 130.599385-226.500923 34.363077 18.944 124.219077 82.077538 124.219077 225.378462 0 10.358154 5.454769 20.027077 14.493538 25.6 9.058462 5.572923 20.460308 6.419692 30.267077 2.107077 188.337231-81.900308 291.780923-254.227692 276.676923-460.878769M464.580923 56.083692" fill="#000000" p-id="1852"></path> 
+    </symbol>
+    <symbol   viewBox="0 0 1024 1024" id="icon-02">
+      <path d="M523.946667 85.333333C802.773333 85.333333 982.826667 307.541333 982.826667 511.338667c0 242.837333-197.397333 448-458.837334 448-84.16 0-150.464-16.597333-221.610666-55.402667l-88.618667 50.197333c-27.797333 8.426667-50.474667 5.162667-68.010667-9.834666-17.557333-14.997333-25.130667-34.730667-22.72-59.2a19570.688 19570.688 0 0 0 29.653334-106.368C123.008 741.76 64 656.426667 64 511.338667 64 307.541333 245.141333 85.333333 523.946667 85.333333z m-1.28 64C304.064 149.333333 128 317.12 128 522.666667c0 77.354667 24.874667 151.125333 70.634667 213.184l5.397333 7.125333 18.218667 23.509333-36.970667 128.746667a0.32 0.32 0 0 0 0.490667 0.384l113.408-63.829333 26.752 14.592C385.237333 878.72 452.544 896 522.666667 896 741.269333 896 917.333333 728.213333 917.333333 522.666667S741.269333 149.333333 522.666667 149.333333z m-192 320a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.848 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.869333 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z" fill="#111111" p-id="2008"></path> 
+    </symbol>
+    <symbol   viewBox="0 0 1024 1024" id="icon-03"> 
+      <path d="M900.48 85.333333C921.6 85.333333 938.666667 102.421333 938.666667 123.52v509.738667C938.666667 801.941333 801.92 938.666667 633.258667 938.666667H123.52A38.186667 38.186667 0 0 1 85.333333 900.48V390.762667C85.333333 222.058667 222.08 85.333333 390.741333 85.333333H900.48zM874.666667 149.333333H390.741333C259.498667 149.333333 152.725333 254.08 149.418667 384.512L149.333333 390.741333V874.666667h483.925334c131.242667 0 238.016-104.746667 241.322666-235.178667l0.085334-6.229333V149.333333z m-362.666667 152.896c115.84 0 209.770667 93.909333 209.770667 209.770667 0 115.84-93.909333 209.770667-209.770667 209.770667-115.84 0-209.770667-93.909333-209.770667-209.770667 0-115.84 93.909333-209.770667 209.770667-209.770667z m0 64a145.770667 145.770667 0 1 0 0 291.541334 145.770667 145.770667 0 0 0 0-291.541334z" fill="#111111" p-id="1852"></path>
+    </symbol>
+    </svg>
+    </div>
+    <!-- 引导系统 -->
+    <div class="guide-overlay" id="guideOverlay">
+        <div class="guide-box">
+            <h3 id="guideTitle">读者引导</h3>
+            <p id="guideText">让我们了解这个页面的主要功能</p>
+            <div class="guide-progress" id="guideProgress">1/8</div>
+            <div class="guide-nav">
+                <div>
+                    <button  id="prevGuideStep" disabled>上一步</button>
+                    <button  id="nextGuideStep">下一步</button>
+                </div>
+                <button  id="closeGuide">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+   <!-- 登录/注册模态框 -->
+   <div class="modal-overlay" id="authModal">
+    <div class="modal-container">
+        <div  class="close-modal" id="closeModal">&times;</div>
+ 
+        <div class="welcome">
+            <div class="pinkbox">
+                <div class="signup nodisplay">
+                    <h1>注册</h1>
+                    <form autocomplete="off">
+                        <input type="text" class="auth-input" placeholder="账户">
+                        <input type="email" class="auth-input" placeholder="邮箱">
+                        <input type="password" class="auth-input" placeholder="密码">
+                        <input type="password" class="auth-input" placeholder="确认密码">
+                        <button style="font-size: 1rem;" class="button submit">创建</button>
+                    </form>
+                </div>
+                <div class="signin">
+                    <h1>登录</h1>
+                    <form class="more-padding" autocomplete="off">
+                        <input type="text" class="auth-input" placeholder="账户">
+                        <input type="password" class="auth-input" placeholder="密码">
+                        <div class="checkbox">
+                            <input type="checkbox" id="remember" class="auth-checkbox" />
+                            <label  style="font-size: 1rem;" for="remember">记住我</label>
+                        </div>
+                        <button style="font-size: 1rem;" class="button submit">登录</button>
+                    </form>
+                </div>
+            </div>
+            <div class="leftbox">
+                <h2 class="title">探索<span>四大名著</span>世界</h2>
+                <img class="flower smaller" src="../img/HomeImg/lo.png" alt="Flower" border="0">
+                <p style="font-size: 1rem;" class="account">已有账号？</p>
+                <button style="font-size: 1rem;" class="button" id="modalSigninBtn">登录</button>
+            </div>
+            <div class="rightbox">
+                <h2 class="title">共建<span>文学</span><br>社区</h2>
+                <img class="flower" src="../img/HomeImg/re.png" alt="Flower"/>
+                <p style="font-size: 1rem;" class="account">首次光临？</p>
+                <button style="font-size: 1rem;" class="button" id="modalSignupBtn">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <script src="../js/script.js"></script>
+    <script src="../js/guide.js"></script>
+    
+    <script>
+        // 人物数据
+        const characters = {
+            LuZhiShen: {
+                name: "鲁智深",
+                portrait: "../img/ErLongShan/LuZhiShen.png",
+                info: "梁山泊第十三位好汉，绰号花和尚。原为渭州经略府提辖，因救金翠莲父女三拳打死镇关西，被迫出家为僧。性格豪爽直率，嫉恶如仇，力大无穷。"
+            },
+            WuSong: {
+                name: "武松",
+                portrait: "../img/ErLongShan/WuSong.png",
+                info: "梁山泊第十四位好汉，绰号行者。景阳冈打虎英雄，曾任阳谷县都头。为兄报仇杀死潘金莲和西门庆，后被张都监陷害，血溅鸳鸯楼后上梁山。"
+            },
+            ShiEn: {
+                name: "施恩",
+                portrait: "../img/ErLongShan/ShiEn.png",
+                info: "孟州牢城管营之子，绰号金眼彪。因快活林被蒋门神霸占，请武松帮忙夺回。后随武松上二龙山，最终归顺梁山。"
+            },
+            SunErNiang: {
+                name: "孙二娘",
+                portrait: "../img/ErLongShan/SunErNiang.png",
+                info: "梁山泊第一百零三位好汉，绰号母夜叉。与丈夫张青在十字坡开黑店，擅长用蒙汗药。性格泼辣豪爽，武艺高强。"
+            },
+            ZhangQing: {
+                name: "张青",
+                portrait: "../img/ErLongShan/ZhangQing.png",
+                info: "梁山泊第一百零二位好汉，绰号菜园子。原与孙二娘在十字坡开黑店，后上二龙山，最终归顺梁山。擅长飞石打人。"
+            },
+            CaoZheng: {
+                name: "曹正",
+                portrait: "../img/ErLongShan/CaoZheng.png",
+                info: "梁山泊第八十一位好汉，绰号操刀鬼。林冲的徒弟，原为屠户，后协助杨志、鲁智深夺取二龙山，最终归顺梁山。"
+            },
+            YangZhi: {
+                name: "杨志",
+                portrait: "../img/ErLongShan/YangZhi.png",
+                info: "梁山泊第十七位好汉，绰号青面兽。杨家将后人，曾任殿帅府制使。因失陷花石纲流落江湖，卖刀杀死牛二，后与鲁智深等夺取二龙山。"
+            }
+        };
+
+        // 初始化人物卡片功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const characterModal = document.getElementById('characterModal');
+            const closeBtn = document.getElementById('closeCharacterBtn');
+            
+            // 为所有人物图片添加点击事件
+            document.querySelectorAll('.color-image').forEach(img => {
+                img.addEventListener('click', function() {
+                    // 获取人物ID（从class中提取）
+                    const characterClass = Array.from(this.classList).find(cls => cls in characters);
+                    
+                    if (characterClass && characters[characterClass]) {
+                        showCharacterCard(characters[characterClass]);
+                    }
+                });
+            });
+            
+            // 关闭按钮事件
+            closeBtn.addEventListener('click', function() {
+                characterModal.style.display = 'none';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // 点击模态框外部关闭
+            characterModal.addEventListener('click', function(e) {
+                if (e.target === characterModal) {
+                    characterModal.style.display = 'none';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // 显示人物卡片
+        function showCharacterCard(characterData) {
+            const characterModal = document.getElementById('characterModal');
+            const portrait = document.getElementById('characterPortrait');
+            const name = document.getElementById('characterName');
+            const info = document.getElementById('characterInfo');
+            
+            // 填充数据
+            portrait.src = characterData.portrait;
+            portrait.alt = characterData.name;
+            name.textContent = characterData.name;
+            info.textContent = characterData.info;
+            
+            // 显示模态框
+            characterModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    </script>
+</body>
+</html>

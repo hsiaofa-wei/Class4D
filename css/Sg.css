@@ -1,0 +1,148 @@
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body { 
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: pan-y; /* 允许垂直滚动但防止缩放 */
+}
+
+.carousel-container {
+    position: fixed;
+    top: 0; 
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.carousel-slides {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    width: 33.333%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* 防止图片拖动导致的缩放 */
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 35px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-indicator.active {
+    background-color: white;
+}
+ 
+/* 防止双击缩放 */
+.carousel-slide {
+    touch-action: pan-y;
+}
+
+/* 新增战役介绍按钮样式 */
+.battle-info-btn {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 20;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+.battle-info-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* 战役介绍弹窗样式 */
+.battle-info-modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.battle-info-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.battle-info-content {
+    width: 80%;
+    max-width: 600px;
+    max-height: 80%;
+    background-color: #222;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.battle-info-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #f8d568;
+}
+
+.battle-info-text {
+    line-height: 1.6;
+    text-align: justify;
+}
+ 
+    

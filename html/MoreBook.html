@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="../css/styles.css"> 
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/guide.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>永创杯网页设计作品</title> 
+</head>
+<style>
+@import "compass/css3";
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+html,
+body { 
+overflow: hidden; 
+height: 100%;
+-webkit-font-smoothing: subpixel-antialiased;
+}
+  
+#background {
+background-repeat: no-repeat;     
+ background-size: cover;            
+position: fixed; 
+left: -20px;
+width: 120%;
+height: 120%;
+object-fit: cover;
+z-index: 1; 
+}
+ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+a {
+color: #2c3e50;
+text-decoration: none;
+}
+
+.btn {
+display: inline-block;
+text-transform: uppercase;
+border: 2px solid #2c3e50;
+margin-top: 100px; 
+font-size: 0.7em;
+font-weight: 700;
+padding: 0.1em 0.4em;
+text-align: center;
+-webkit-transition: color 0.3s, border-color 0.3s;
+-moz-transition: color 0.3s, border-color 0.3s;
+transition: color 0.3s, border-color 0.3s;
+}
+
+.btn:hover {
+border-color: #16a085;
+color: #16a085;
+}
+
+/* 初始加载时的动画 */
+.tabs input:nth-of-type(3):checked + label {
+    animation: wiggle-animation 1s ease .3s;
+}
+
+/* 确保默认选中第三个标签 */
+.tabs input:nth-of-type(3) {
+    display: none !important; /* 隐藏radio按钮 */
+    position: absolute;
+    opacity: 0;
+}
+
+.tabs label:nth-of-type(3) {
+    animation: wiggle-animation 1s ease .3s;
+}
+.align { 
+clear: both;
+margin: 90px auto 20px;
+width: 100%;
+max-width: 1170px;
+text-align: center;
+}
+
+.align > li {
+width: 500px;
+min-height: 300px;
+display: inline-block;
+margin: 30px 20px 30px 30px;
+padding: 0 0 0 60px;
+vertical-align: top;
+}
+
+
+.book {z-index: 1;
+position: relative;
+width: 160px; 
+height: 220px;
+-webkit-perspective: 1000px;
+-moz-perspective: 1000px;
+perspective: 1000px;
+-webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+transform-style: preserve-3d;
+}
+
+.hardcover_front li:first-child {
+background-color: #eee;
+-webkit-backface-visibility: hidden;
+-moz-backface-visibility: hidden;
+backface-visibility: hidden;
+}
+
+.hardcover_front li:last-child {
+background: #fffbec;
+}
+
+.hardcover_back li:first-child {
+background: #fffbec;
+}
+
+.hardcover_back li:last-child {
+background: #fffbec;
+}
+
+.book_spine li:first-child {
+background: #eee;
+}
+.book_spine li:last-child {
+background: #333;
+}
+
+.hardcover_front li:first-child:after,
+.hardcover_front li:first-child:before,
+.hardcover_front li:last-child:after,
+.hardcover_front li:last-child:before,
+.hardcover_back li:first-child:after,
+.hardcover_back li:first-child:before,
+.hardcover_back li:last-child:after,
+.hardcover_back li:last-child:before,
+.book_spine li:first-child:after,
+.book_spine li:first-child:before,
+.book_spine li:last-child:after,
+.book_spine li:last-child:before {
+background: #999;
+}
+
+
+.page > li {
+background: -webkit-linear-gradient(left, #e1ddd8 0%, #fffbf6 100%);
+background: -moz-linear-gradient(left, #e1ddd8 0%, #fffbf6 100%);
+background: -ms-linear-gradient(left, #e1ddd8 0%, #fffbf6 100%);
+background: linear-gradient(left, #e1ddd8 0%, #fffbf6 100%);
+box-shadow: inset 0px -1px 2px rgba(50, 50, 50, 0.1), inset -1px 0px 1px rgba(150, 150, 150, 0.2);
+border-radius: 0px 5px 5px 0px;
+}
+
+
+.hardcover_front {
+-webkit-transform: rotateY(-34deg) translateZ(8px);
+-moz-transform: rotateY(-34deg) translateZ(8px);
+transform: rotateY(-34deg) translateZ(8px);
+z-index: 100;
+}
+
+.hardcover_back {
+-webkit-transform: rotateY(-15deg) translateZ(-8px);
+-moz-transform: rotateY(-15deg) translateZ(-8px);
+transform: rotateY(-15deg) translateZ(-8px);
+}
+
+.page li:nth-child(1) {
+-webkit-transform: rotateY(-28deg);
+-moz-transform: rotateY(-28deg);
+transform: rotateY(-28deg);
+}
+
+.page li:nth-child(2) {
+-webkit-transform: rotateY(-30deg);
+-moz-transform: rotateY(-30deg);
+transform: rotateY(-30deg);
+}
+
+.page li:nth-child(3) {
+-webkit-transform: rotateY(-32deg);
+-moz-transform: rotateY(-32deg);
+transform: rotateY(-32deg);
+}
+
+.page li:nth-child(4) {
+-webkit-transform: rotateY(-34deg);
+-moz-transform: rotateY(-34deg);
+transform: rotateY(-34deg);
+}
+
+.page li:nth-child(5) {
+-webkit-transform: rotateY(-36deg);
+-moz-transform: rotateY(-36deg);
+transform: rotateY(-36deg);
+}
+
+
+.hardcover_front,
+.hardcover_back,
+.book_spine,
+.hardcover_front li,
+.hardcover_back li,
+.book_spine li {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+-webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+transform-style: preserve-3d;
+}
+
+.hardcover_front,
+.hardcover_back {
+-webkit-transform-origin: 0% 100%;
+-moz-transform-origin: 0% 100%;
+transform-origin: 0% 100%;
+}
+
+.hardcover_front {
+-webkit-transition: all 0.8s ease, z-index 0.6s;
+-moz-transition: all 0.8s ease, z-index 0.6s;
+transition: all 0.8s ease, z-index 0.6s;
+}
+
+.hardcover_front li:first-child {
+cursor: default;
+-webkit-user-select: none;
+-moz-user-select: none;
+user-select: none;
+-webkit-transform: translateZ(2px);
+-moz-transform: translateZ(2px);
+transform: translateZ(2px);
+}
+
+.hardcover_front li:last-child {
+-webkit-transform: rotateY(180deg) translateZ(2px);
+-moz-transform: rotateY(180deg) translateZ(2px);
+transform: rotateY(180deg) translateZ(2px);
+}
+
+.hardcover_back li:first-child {
+-webkit-transform: translateZ(2px);
+-moz-transform: translateZ(2px);
+transform: translateZ(2px);
+}
+
+.hardcover_back li:last-child {
+-webkit-transform: translateZ(-2px);
+-moz-transform: translateZ(-2px);
+transform: translateZ(-2px);
+}
+ 
+.hardcover_front li:first-child:after,
+.hardcover_front li:first-child:before,
+.hardcover_front li:last-child:after,
+.hardcover_front li:last-child:before,
+.hardcover_back li:first-child:after,
+.hardcover_back li:first-child:before,
+.hardcover_back li:last-child:after,
+.hardcover_back li:last-child:before,
+.book_spine li:first-child:after,
+.book_spine li:first-child:before,
+.book_spine li:last-child:after,
+.book_spine li:last-child:before {
+position: absolute;
+top: 0;
+left: 0;
+}
+
+.hardcover_front li:first-child:after,
+.hardcover_front li:first-child:before {
+width: 4px;
+height: 100%;
+}
+
+.hardcover_front li:first-child:after {
+-webkit-transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+-moz-transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+}
+
+.hardcover_front li:first-child:before {
+-webkit-transform: rotateY(90deg) translateZ(158px) translateX(2px);
+-moz-transform: rotateY(90deg) translateZ(158px) translateX(2px);
+transform: rotateY(90deg) translateZ(158px) translateX(2px);
+}
+
+.hardcover_front li:last-child:after,
+.hardcover_front li:last-child:before {
+width: 4px;
+height: 160px;
+}
+
+.hardcover_front li:last-child:after {
+-webkit-transform: rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(-2px) translateY(-78px);
+-moz-transform: rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(-2px) translateY(-78px);
+transform: rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(-2px) translateY(-78px);
+}
+.hardcover_front li:last-child:before {
+box-shadow: 0px 0px 30px 5px #333;
+-webkit-transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(-2px) translateY(-78px);
+-moz-transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(-2px) translateY(-78px);
+transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(-2px) translateY(-78px);
+}
+
+.hardcover_back li:first-child:after,
+.hardcover_back li:first-child:before {
+width: 4px;
+height: 100%;
+}
+
+.hardcover_back li:first-child:after {
+-webkit-transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+-moz-transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+}
+.hardcover_back li:first-child:before {
+-webkit-transform: rotateY(90deg) translateZ(158px) translateX(2px);
+-moz-transform: rotateY(90deg) translateZ(158px) translateX(2px);
+transform: rotateY(90deg) translateZ(158px) translateX(2px);
+}
+
+.hardcover_back li:last-child:after,
+.hardcover_back li:last-child:before {
+width: 4px;
+height: 160px;
+}
+
+.hardcover_back li:last-child:after {
+-webkit-transform: rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(2px) translateY(-78px);
+-moz-transform: rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(2px) translateY(-78px);
+transform: rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(2px) translateY(-78px);
+}
+
+.hardcover_back li:last-child:before {
+box-shadow: 10px -1px 80px 20px #666;
+-webkit-transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(2px) translateY(-78px);
+-moz-transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(2px) translateY(-78px);
+transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(2px) translateY(-78px);
+}
+
+.book_spine {
+-webkit-transform: rotateY(60deg) translateX(-5px) translateZ(-12px);
+-moz-transform: rotateY(60deg) translateX(-5px) translateZ(-12px);
+transform: rotateY(60deg) translateX(-5px) translateZ(-12px);
+width: 16px;
+z-index: 0;
+}
+
+.book_spine li:first-child {
+-webkit-transform: translateZ(2px);
+-moz-transform: translateZ(2px);
+transform: translateZ(2px);
+}
+
+.book_spine li:last-child {
+-webkit-transform: translateZ(-2px);
+-moz-transform: translateZ(-2px);
+transform: translateZ(-2px);
+}
+
+.book_spine li:first-child:after,
+.book_spine li:first-child:before {
+width: 4px;
+height: 100%;
+}
+
+.book_spine li:first-child:after {
+-webkit-transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+-moz-transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+transform: rotateY(90deg) translateZ(-2px) translateX(2px);
+}
+
+.book_spine li:first-child:before {
+-webkit-transform: rotateY(-90deg) translateZ(-12px);
+-moz-transform: rotateY(-90deg) translateZ(-12px);
+transform: rotateY(-90deg) translateZ(-12px);
+}
+
+.book_spine li:last-child:after,
+.book_spine li:last-child:before {
+width: 4px;
+height: 16px;
+}
+
+.book_spine li:last-child:after {
+-webkit-transform: rotateX(90deg) rotateZ(90deg) translateZ(8px) translateX(2px) translateY(-6px);
+-moz-transform: rotateX(90deg) rotateZ(90deg) translateZ(8px) translateX(2px) translateY(-6px);
+transform: rotateX(90deg) rotateZ(90deg) translateZ(8px) translateX(2px) translateY(-6px);
+}
+
+.book_spine li:last-child:before {
+box-shadow: 5px -1px 100px 40px rgba(0, 0, 0, 0.2);
+-webkit-transform: rotateX(90deg) rotateZ(90deg) translateZ(-210px) translateX(2px) translateY(-6px);
+-moz-transform: rotateX(90deg) rotateZ(90deg) translateZ(-210px) translateX(2px) translateY(-6px);
+transform: rotateX(90deg) rotateZ(90deg) translateZ(-210px) translateX(2px) translateY(-6px);
+}
+
+.page,
+.page > li {
+position: absolute;
+top: 0;
+left: 0;
+-webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+transform-style: preserve-3d;
+}
+
+.page {
+width: 100%;
+height: 98%;
+top: 1%;
+left: 3%;
+z-index: 10;
+}
+
+.page > li {
+width: 100%;
+height: 100%;
+-webkit-transform-origin: left center;
+-moz-transform-origin: left center;
+transform-origin: left center;
+-webkit-transition-property: transform;
+-moz-transition-property: transform;
+transition-property: transform;
+-webkit-transition-timing-function: ease;
+-moz-transition-timing-function: ease;
+transition-timing-function: ease;
+}
+
+.page > li:nth-child(1) {
+-webkit-transition-duration: 0.6s;
+-moz-transition-duration: 0.6s;
+transition-duration: 0.6s;
+}
+
+.page > li:nth-child(2) {
+-webkit-transition-duration: 0.6s;
+-moz-transition-duration: 0.6s;
+transition-duration: 0.6s;
+}
+
+.page > li:nth-child(3) {
+-webkit-transition-duration: 0.4s;
+-moz-transition-duration: 0.4s;
+transition-duration: 0.4s;
+}
+
+.page > li:nth-child(4) {
+-webkit-transition-duration: 0.5s;
+-moz-transition-duration: 0.5s;
+transition-duration: 0.5s;
+}
+
+.page > li:nth-child(5) {
+-webkit-transition-duration: 0.6s;
+-moz-transition-duration: 0.6s;
+transition-duration: 0.6s;
+}
+
+
+.book:hover > .hardcover_front {
+-webkit-transform: rotateY(-145deg) translateZ(0);
+-moz-transform: rotateY(-145deg) translateZ(0);
+transform: rotateY(-145deg) translateZ(0);
+z-index: 0;
+}
+
+.book:hover > .page li:nth-child(1) {
+-webkit-transform: rotateY(-30deg);
+-moz-transform: rotateY(-30deg);
+transform: rotateY(-30deg);
+-webkit-transition-duration: 1.5s;
+-moz-transition-duration: 1.5s;
+transition-duration: 1.5s;
+}
+
+.book:hover > .page li:nth-child(2) {
+-webkit-transform: rotateY(-35deg);
+-moz-transform: rotateY(-35deg);
+transform: rotateY(-35deg);
+-webkit-transition-duration: 1.8s;
+-moz-transition-duration: 1.8s;
+transition-duration: 1.8s;
+}
+
+.book:hover > .page li:nth-child(3) {
+-webkit-transform: rotateY(-118deg);
+-moz-transform: rotateY(-118deg);
+transform: rotateY(-118deg);
+-webkit-transition-duration: 1.6s;
+-moz-transition-duration: 1.6s;
+transition-duration: 1.6s;
+}
+
+.book:hover > .page li:nth-child(4) {
+-webkit-transform: rotateY(-130deg);
+-moz-transform: rotateY(-130deg);
+transform: rotateY(-130deg);
+-webkit-transition-duration: 1.4s;
+-moz-transition-duration: 1.4s;
+transition-duration: 1.4s;
+}
+
+.book:hover > .page li:nth-child(5) {
+-webkit-transform: rotateY(-140deg);
+-moz-transform: rotateY(-140deg);
+transform: rotateY(-140deg);
+-webkit-transition-duration: 1.2s;
+-moz-transition-duration: 1.2s;
+transition-duration: 1.2s;
+}
+
+
+.coverDesign {
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+overflow: hidden;
+-webkit-backface-visibility: hidden;
+-moz-backface-visibility: hidden;
+backface-visibility: hidden;
+}
+
+.coverDesign::after {
+background-image: -webkit-linear-gradient( -135deg, rgba(255, 255, 255, 0.45) 0%, transparent 100%);
+background-image: -moz-linear-gradient( -135deg, rgba(255, 255, 255, 0.45) 0%, transparent 100%);
+background-image: linear-gradient( -135deg, rgba(255, 255, 255, 0.45) 0%, transparent 100%);
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+}
+
+.coverDesign h1 {
+color: #fff;
+font-size: 2.2em;
+letter-spacing: 0.05em;
+text-align: center;
+margin: 54% 0 0 0;
+text-shadow: -1px -1px 0 rgba(0,0,0,0.1);
+}
+
+.coverDesign p {
+color: #f8f8f8;
+font-size: 1em;
+text-align: center;
+text-shadow: -1px -1px 0 rgba(0,0,0,0.1);
+}
+
+.yellow {
+background-color: #f1c40f;
+background-image: -webkit-linear-gradient(top, #f1c40f 58%, #e7ba07 0%);
+background-image: -moz-linear-gradient(top, #f1c40f 58%, #e7ba07 0%);
+background-image: linear-gradient(top, #f1c40f 58%, #e7ba07 0%);
+}
+
+.blue {
+background-color: #3498db;
+background-image: -webkit-linear-gradient(top, #3498db 58%, #2a90d4 0%);
+background-image: -moz-linear-gradient(top, #3498db 58%, #2a90d4 0%);
+background-image: linear-gradient(top, #3498db 58%, #2a90d4 0%);
+}
+
+.grey {
+background-color: #f8e9d1;
+background-image: -webkit-linear-gradient(top, #f8e9d1 58%, #e7d5b7 0%);
+background-image: -moz-linear-gradient(top, #f8e9d1 58%, #e7d5b7 0%);
+background-image: linear-gradient(top, #f8e9d1 58%, #e7d5b7 0%);
+}
+
+figcaption {
+padding-left: 40px;
+text-align: left;
+position: absolute;
+top: 0%;
+left: 160px;
+width: 310px;
+}
+
+figcaption h1 {
+margin: 0;
+}
+
+figcaption span {
+color: #16a085;
+padding: 0.6em 0 1em 0;
+display: block;
+}
+
+figcaption p {
+color: #63707d;
+line-height: 1.3;
+}
+
+@media screen and (max-width: 37.8125em) {
+.align > li {
+  width: 100%;
+  min-height: 440px;
+  height: auto;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.book {
+  margin: 0 auto;
+}
+
+figcaption {
+  text-align: center;
+  width: 320px;
+  top: 250px;
+  padding-left: 0;
+  left: -80px;
+  font-size: 90%;
+}
+}
+</style>
+<body>
+   
+        <div class="content">
+            <!-- 页面内容 -->
+            <img id="background" src="../img/HomeImg/bottom.png" >
+    <div class="component">
+        <ul class="align">
+          <!-- Book 1 -->
+          <li>
+            <figure class='book'>       
+              <ul class='hardcover_front'>
+                <li>
+                  <img src="../img/FourCard/HlmBook.jpg" alt="" width="100%" height="100%">
+                </li>
+                <li></li>
+              </ul>           
+              <ul class='page'>
+                <li></li>
+                <li>
+                  <a class="btn" href="HlmBook.html">阅读</a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li> 
+              </ul>        
+              <ul class='hardcover_back'>
+                <li></li>
+                <li></li>
+              </ul>
+              <ul class='book_spine'>
+                <li></li>
+                <li></li>
+              </ul>
+			  <figcaption>
+				<h1 style="color:#666;">红楼梦</h1>
+				<span>作者：曹雪芹</span>
+				<p>中国古典文学巅峰之作，以贾、史、王、薛四大家族的兴衰为背景，聚焦贾宝玉与林黛玉、薛宝钗的爱情悲剧。小说通过细腻的人物刻画和复杂的社会关系，揭示封建家族的腐朽与人性挣扎。如“黛玉葬花”“宝玉挨打”“刘姥姥进大观园”等情节极具艺术感染力。</p>
+			  </figcaption>
+            </figure>
+          </li>  
+          <!-- Book 2 -->
+          <li>
+            <figure class='book'>     
+              <ul class='hardcover_front'>
+                <li>
+                  <img src="../img/FourCard/SgyyBook.jpg" alt="" width="100%" height="100%">
+                </li>
+                <li></li>
+              </ul>            
+              <ul class='page'>
+                <li></li>
+                <li>
+                  <a class="btn" href="SgyyBook.html">阅读</a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>         
+              <ul class='hardcover_back'>
+                <li></li>
+                <li></li>
+              </ul>
+              <ul class='book_spine'>
+                <li></li>
+                <li></li>
+              </ul>
+			  <figcaption>
+				<h1 style="color:#666;">三国演义</h1>
+				<span>作者：罗贯中</span>
+				<p>以东汉末年至三国鼎立的历史为背景，描写了魏、蜀、吴三国之间的政治斗争与军事战争。小说塑造了诸葛亮、曹操、关羽、刘备等众多经典人物，展现了权谋、忠义、智勇的较量。名场面如“三顾茅庐”“赤壁之战”“空城计”等，影响深远。</p>
+			  </figcaption>
+            </figure>
+          </li>  
+            <li>
+              <figure class='book'>       
+                <ul class='hardcover_front'>
+                  <li>
+                    <img src="../img/FourCard/ShzBook.jpg" alt="" width="100%" height="100%">
+                  </li>
+                  <li></li>
+                  </ul>             
+                  <ul class='page'>
+                  <li></li>
+                  <li>
+                      <a class="btn" href="ShzBook.html">阅读</a>
+                  </li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  </ul>            
+                  <ul class='hardcover_back'>
+                  <li></li>
+                  <li></li>
+                  </ul>
+                  <ul class='book_spine'>
+                  <li></li>
+                  <li></li>
+                  </ul>
+                  <figcaption>
+                    <h1 style="color:#666;">水浒传</h1>
+                    <span>作者：施耐庵</span>
+                    <p>讲述北宋末年108位好汉在梁山泊聚义，反抗腐败官府的故事。宋江、武松、林冲、鲁智深等英雄形象鲜明，既有快意恩仇的侠义精神，也有对封建统治的批判。最终梁山好汉接受招安，却难逃悲剧命运。</p>
+                  </figcaption>
+                </figure>
+              </li>  
+          <li>
+            <figure class='book'>       
+              <ul class='hardcover_front'>
+                <li>
+                  <img src="../img/FourCard/XyjBook.jpg" alt="" width="100%" height="100%">
+                </li>
+                <li></li>
+              </ul>              
+              <ul class='page'>
+                <li></li>
+                <li>
+                  <a class="btn" href="XyjBook.html">阅读</a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>           
+              <ul class='hardcover_back'>
+                <li></li>
+                <li></li>
+              </ul>
+              <ul class='book_spine'>
+                <li></li>
+                <li></li>
+              </ul>
+			  <figcaption>
+				<h1 style="color:#666;">西游记</h1>
+				<span>作者：吴承恩</span>
+				<p>以唐僧师徒西天取经为主线，融合神话、冒险与讽刺。孙悟空、猪八戒、沙僧护送唐僧历经九九八十一难，降妖除魔，最终取得真经。小说既有奇幻色彩，又暗含对现实社会的批判，如“三打白骨精”“大闹天宫”等情节脍炙人口。</p>
+			  </figcaption>
+            </figure>
+          </li>
+        </ul>  
+      </div>
+        </div>
+    <!-- 顶部导航栏 -->
+    <nav class="top-navbar">
+      <a class="logo">
+          <img src="../img/HomeImg/logo.png" alt="网站Logo">
+      </a>
+      <div>
+          <div class="nav-container">
+              <ul class="nav-menu">  
+                  <a href="envelope.html" class="tooltip" data-tooltip="关于"><img src="../img/HomeImg/More.png" alt=""></a>
+                  <a href="#" id="tutorialBtn" class="tooltip" data-tooltip="教程"><img src="../img/HomeImg/Teach.png" alt=""></a>
+                  <div class="music-player">
+                    <div class="album-art">
+                        <svg class="vinyl" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="#333"/>
+                            <circle cx="50" cy="50" r="15" fill="#fff"/>
+                            <circle cx="50" cy="50" r="5" fill="#333"/>
+                            <path d="M50,5 A45,45 0 0,1 95,50 A45,45 0 0,1 50,95 A45,45 0 0,1 5,50 A45,45 0 0,1 50,5 Z" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="5,5"/>
+                        </svg>
+                    </div> 
+                    
+                    <div class="controls">
+                        <button class="play-btn" id="playBtn">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                        
+                        <div class="progress-container" id="progressContainer">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                        
+                        <div class="time" id="timeDisplay">0:00</div>
+                        
+                        <button class="mute-btn" id="muteBtn">
+                            <svg class="volume-icon" viewBox="0 0 24 24">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                    </div>
+              </ul>
+          </div>
+      </div>
+      <!-- 登入注册 -->
+      <div class="user-profile">
+          <ul class="nav-menu">
+              <a href="#" id="openLoginModal" class="tooltip" data-tooltip="登入注册">
+                  <img src="../img/HomeImg/Register.png"  >
+              </a>
+          </ul>
+          <!-- 搜索框 -->
+          <form id="content">
+              <input type="text" name="input" class="input" id="search-input">
+              <button type="reset" class="search" id="search-btn"></button>
+          </form>
+          <div class="menu-toggle">
+              <i class="fa fa-bars"></i>
+          </div>
+      </div>
+  </nav> 
+  <!-- 垂直导航栏 -->
+  <div class="tabs">
+      <input type="radio" name="tab" id="tab-01" />
+      <label for="tab-01">
+          <svg>
+              <use xlink:href="#icon-01" class="icon" />
+          </svg>
+          <div class="wave"></div>
+      </label>
+      <input type="radio" name="tab" id="tab-02" />
+      <label for="tab-02">
+          <svg>
+              <use xlink:href="#icon-02" class="icon" />
+          </svg>
+          <div class="wave"></div>
+      </label>
+      <input type="radio" name="tab" id="tab-03" />
+      <label for="tab-03">
+          <svg>
+              <use xlink:href="#icon-03" class="icon" />
+          </svg>
+          <div class="wave"></div>
+      </label> 
+  
+ <!-- SVG 图标定义 -->
+ <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol   viewBox="0 0 1024 1024" id="icon-01" >
+    <path d="M958.542769 540.711385c-3.702154-50.333538-13.174154-100.391385-27.451077-144.836923-21.897846-68.135385-54.567385-133.159385-92.002461-183.236924-10.24-13.666462-30.011077-16.777846-44.248616-6.971076a29.577846 29.577846 0 0 0-7.286153 42.397538c33.555692 44.839385 62.976 103.699692 82.963692 165.730462 12.839385 40.034462 21.425231 85.366154 24.753231 131.170461 12.209231 166.892308-59.372308 303.222154-197.769847 380.553846-22.665846-178.825846-167.227077-237.174154-173.883076-239.812923a32.886154 32.886154 0 0 0-27.332924 1.634462c-125.853538 67.032615-162.500923 179.515077-173.134769 242.451692-124.534154-62.838154-200.251077-181.169231-200.251077-317.558154 0-91.864615 47.694769-176.994462 145.782154-260.155077 13.036308-11.067077 26.328615-21.956923 39.620923-32.846769 72.034462-58.958769 146.589538-119.926154 184.123077-212.676923 4.115692-10.003692 7.68-19.081846 10.673231-27.273846 66.363077 44.780308 209.979077 165.671385 256.590769 396.937846 3.328 16.502154 20.027077 27.254154 37.12 24.064 17.211077-3.150769 28.455385-19.101538 25.107692-35.584C757.523692 145.073231 526.001231 18.865231 499.672615 5.415385c-0.886154-0.492308-1.811692-0.905846-2.756923-1.378462-15.694769-7.148308-34.461538-0.886154-42.141538 14.040615-2.166154 4.233846-3.190154 8.743385-3.268923 13.193847-2.953846 11.224615-15.320615 45.942154-18.116923 53.228307-31.822769 78.513231-97.142154 131.938462-166.262154 188.49477-13.587692 11.106462-27.116308 22.232615-40.467692 33.516307-110.907077 94.089846-167.128615 196.923077-167.128616 305.723077 0 175.537231 107.027692 325.513846 279.315692 391.286154a32.649846 32.649846 0 0 0 29.617231-3.190154c8.723692-5.671385 13.922462-15.222154 13.824-25.324308-0.039385-6.183385 0.472615-147.574154 130.599385-226.500923 34.363077 18.944 124.219077 82.077538 124.219077 225.378462 0 10.358154 5.454769 20.027077 14.493538 25.6 9.058462 5.572923 20.460308 6.419692 30.267077 2.107077 188.337231-81.900308 291.780923-254.227692 276.676923-460.878769M464.580923 56.083692" fill="#000000" p-id="1852"></path> 
+  </symbol>
+  <symbol   viewBox="0 0 1024 1024" id="icon-02">
+    <path d="M523.946667 85.333333C802.773333 85.333333 982.826667 307.541333 982.826667 511.338667c0 242.837333-197.397333 448-458.837334 448-84.16 0-150.464-16.597333-221.610666-55.402667l-88.618667 50.197333c-27.797333 8.426667-50.474667 5.162667-68.010667-9.834666-17.557333-14.997333-25.130667-34.730667-22.72-59.2a19570.688 19570.688 0 0 0 29.653334-106.368C123.008 741.76 64 656.426667 64 511.338667 64 307.541333 245.141333 85.333333 523.946667 85.333333z m-1.28 64C304.064 149.333333 128 317.12 128 522.666667c0 77.354667 24.874667 151.125333 70.634667 213.184l5.397333 7.125333 18.218667 23.509333-36.970667 128.746667a0.32 0.32 0 0 0 0.490667 0.384l113.408-63.829333 26.752 14.592C385.237333 878.72 452.544 896 522.666667 896 741.269333 896 917.333333 728.213333 917.333333 522.666667S741.269333 149.333333 522.666667 149.333333z m-192 320a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.848 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.869333 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z" fill="#111111" p-id="2008"></path> 
+  </symbol>
+  <symbol   viewBox="0 0 1024 1024" id="icon-03"> 
+    <path d="M900.48 85.333333C921.6 85.333333 938.666667 102.421333 938.666667 123.52v509.738667C938.666667 801.941333 801.92 938.666667 633.258667 938.666667H123.52A38.186667 38.186667 0 0 1 85.333333 900.48V390.762667C85.333333 222.058667 222.08 85.333333 390.741333 85.333333H900.48zM874.666667 149.333333H390.741333C259.498667 149.333333 152.725333 254.08 149.418667 384.512L149.333333 390.741333V874.666667h483.925334c131.242667 0 238.016-104.746667 241.322666-235.178667l0.085334-6.229333V149.333333z m-362.666667 152.896c115.84 0 209.770667 93.909333 209.770667 209.770667 0 115.84-93.909333 209.770667-209.770667 209.770667-115.84 0-209.770667-93.909333-209.770667-209.770667 0-115.84 93.909333-209.770667 209.770667-209.770667z m0 64a145.770667 145.770667 0 1 0 0 291.541334 145.770667 145.770667 0 0 0 0-291.541334z" fill="#111111" p-id="1852"></path>
+  </symbol>
+</svg>
+</div>
+   <!-- 引导系统 -->
+   <div class="guide-overlay" id="guideOverlay">
+    <div class="guide-box">
+        <h3 id="guideTitle">读者引导</h3>
+        <p id="guideText">让我们了解这个页面的主要功能</p>
+        <div class="guide-progress" id="guideProgress">1/8</div>
+        <div class="guide-nav">
+            <div>
+                <button  id="prevGuideStep" disabled>上一步</button>
+                <button  id="nextGuideStep">下一步</button>
+            </div>
+            <button  id="closeGuide">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- 登录/注册模态框 -->
+<div class="modal-overlay" id="authModal">
+<div class="modal-container">
+    <div  class="close-modal" id="closeModal">&times;</div>
+
+    <div class="welcome">
+        <div class="pinkbox">
+            <div class="signup nodisplay">
+                <h1>注册</h1>
+                <form autocomplete="off">
+                    <input type="text" class="auth-input" placeholder="账户">
+                    <input type="email" class="auth-input" placeholder="邮箱">
+                    <input type="password" class="auth-input" placeholder="密码">
+                    <input type="password" class="auth-input" placeholder="确认密码">
+                    <button style="font-size: 1rem;" class="button submit">创建</button>
+                </form>
+            </div>
+            <div class="signin">
+                <h1>登录</h1>
+                <form class="more-padding" autocomplete="off">
+                    <input type="text" class="auth-input" placeholder="账户">
+                    <input type="password" class="auth-input" placeholder="密码">
+                    <div class="checkbox">
+                        <input type="checkbox" id="remember" class="auth-checkbox" />
+                        <label  style="font-size: 1rem;" for="remember">记住我</label>
+                    </div>
+                    <button style="font-size: 1rem;" class="button submit">登录</button>
+                </form>
+            </div>
+        </div>
+        <div class="leftbox">
+          <h2 class="title">探索<span>四大名著</span>世界</h2>
+          <img class="flower smaller" src="../img/HomeImg/lo.png" alt="Flower" border="0">
+          <p style="font-size: 1rem;" class="account">已有账号？</p>
+          <button style="font-size: 1rem;" class="button" id="modalSigninBtn">登录</button>
+      </div>
+      <div class="rightbox">
+          <h2 class="title">共建<span>文学</span><br>社区</h2>
+          <img class="flower" src="../img/HomeImg/re.png" alt="Flower"/>
+          <p style="font-size: 1rem;" class="account">首次光临？</p>
+          <button style="font-size: 1rem;" class="button" id="modalSignupBtn">注册</button>
+      </div>
+    </div>
+</div>
+</div>
+ 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <script src="../js/script.js"></script>
+    <script src="../js/guide.js"></script>
+    
+</body>
+</html>

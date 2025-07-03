@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="../css/styles.css"> 
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/guide.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>永创杯网页设计作品</title> 
+</head>
+<style>
+    body { 
+        font-family: 'Microsoft YaHei', sans-serif;
+        overflow: hidden; 
+        background-image: url(../img/ThreeKingdoms/text.png);
+        background-position: 0 200px;
+        background-repeat: no-repeat; 
+        background-size: cover;
+    }
+    
+    .info-card { 
+        overflow-y: auto;
+        position: relative;
+        background-color: white;
+        border-radius: 8px;
+        padding: 25px;  
+        left: 1%;
+        top: 100px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        max-width: 1200px; 
+        height: 650px;
+        opacity: 0.8;
+    }
+    
+    h2 {
+        color: #c12c1f;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
+    
+    .highlight {
+        color: #c12c1f;
+        font-weight: bold;
+    }
+     
+    .quote {
+        font-style: italic;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-left: 4px solid #c12c1f;
+        margin: 20px 0; 
+    }
+    
+    /* 测试容器样式 */
+    #advisor-test-container {
+        margin: 20px 0;
+    }
+    
+    /* 进度条样式 */
+    .progress-container {
+        width: 100%;
+        background-color: #eee;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    
+    .progress-bar {
+        height: 10px;
+        background-color: #c12c1f;
+        border-radius: 5px;
+        width: 0%;
+        transition: width 0.3s;
+    }
+    
+    /* 问题选项样式 */
+    .question {
+        margin-bottom: 25px;
+        animation: fadeIn 0.5s;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .question h4 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 1.6rem;
+    }
+    
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .option {
+        padding: 12px 15px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-left: 4px solid #ddd;
+        font-size: 1.2rem;
+    }
+    
+    .option:hover {
+        background-color: #e9e9e9;
+        border-left-color: #c12c1f;
+    }
+    
+    .option.selected {
+        background-color: #e8f4f8;
+        border-left-color: #2980b9;
+        font-weight: bold;
+    }
+    
+    /* 结果页面样式 */
+    #result-content {
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        margin: 15px 0;
+        animation: fadeIn 0.5s;
+    }
+    
+    .advisor-result {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+   
+    
+    .advisor-name {
+        font-size: 2rem;
+        color: #c12c1f;
+        margin: 10px 0;
+    }
+    
+    .advisor-title {
+        font-style: italic;
+        color: #666;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    
+    .advisor-desc {
+        text-align: left;
+        line-height: 1.6;
+        margin-top: 15px;
+        font-size: 1.6rem;
+    }
+    
+    .traits {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 0;
+        justify-content: center;
+    }
+    
+    .trait {
+        background-color: #e8f4f8;
+        color: #2980b9;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* 按钮样式 */
+    .btn {
+        padding: 12px 25px;
+        background-color: #c12c1f;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+        margin-top: 15px;
+    }
+    
+    .btn:hover {
+        background-color: #a8231a;
+    }
+    
+    .btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    
+</style>
+<body>
+    <div class="styled-wrapper">
+        <button class="button" onclick="window.location.href='SgyyCite.html'">
+          <div class="button-box">
+            <span class="button-elem">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="arrow-icon"
+              >
+                <path
+                  fill="black"
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                ></path>
+              </svg>
+            </span>
+            <span class="button-elem">
+              <svg
+                fill="black"
+                viewBox="0 0  24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="arrow-icon"
+              >
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                ></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+      </div>
+        <div class="content">
+            <!-- 页面内容 -->
+            <div class="info-card">
+                <h2 style="font-size: 2rem;">谋士智囊团测试</h2>
+                <p style="font-size: 1rem;">想知道你像三国时期的哪位谋士吗？回答以下10个问题，我们将分析你的性格特质与<span class="highlight">诸葛亮、周瑜、司马懿</span>等著名谋士的相似度。</p>
+                
+                <div id="advisor-test-container">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    
+                    <div id="question-container"></div>
+                    <button id="next-btn" class="btn" disabled>下一题</button>
+                    
+                    <div id="result-container" style="display:none;">
+                        <h3>你的谋士匹配结果</h3>
+                        <div id="result-content"></div>
+                        <button id="retry-btn" class="btn">再测一次</button>
+                    </div>
+                    <div class="quote">
+                        "夫未战而庙算胜者，得算多也；未战而庙算不胜者，得算少也。" ——《孙子兵法》
+                    </div>
+                </div>
+            </div>
+        </div>
+     <!-- 顶部导航栏 -->
+     <nav class="top-navbar">
+        <a class="logo">
+            <img src="../img/HomeImg/logo.png" alt="网站Logo">
+        </a>
+        <div>
+            <div class="nav-container">
+                <ul class="nav-menu">  
+                    <a href="envelope.html" class="tooltip" data-tooltip="关于"><img src="../img/HomeImg/More.png" alt=""></a>
+                    <a href="#" id="tutorialBtn" class="tooltip" data-tooltip="教程"><img src="../img/HomeImg/Teach.png" alt=""></a>
+                    <div class="music-player">
+                      <div class="album-art">
+                          <svg class="vinyl" viewBox="0 0 100 100">
+                              <circle cx="50" cy="50" r="45" fill="#333"/>
+                              <circle cx="50" cy="50" r="15" fill="#fff"/>
+                              <circle cx="50" cy="50" r="5" fill="#333"/>
+                              <path d="M50,5 A45,45 0 0,1 95,50 A45,45 0 0,1 50,95 A45,45 0 0,1 5,50 A45,45 0 0,1 50,5 Z" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="5,5"/>
+                          </svg>
+                      </div> 
+                      
+                      <div class="controls">
+                          <button class="play-btn" id="playBtn">
+                              <svg class="play-icon" viewBox="0 0 24 24">
+                                  <path d="M8 5v14l11-7z"/>
+                              </svg>
+                          </button>
+                          
+                          <div class="progress-container" id="progressContainer">
+                              <div class="progress-bar" id="progressBar"></div>
+                          </div>
+                          
+                          <div class="time" id="timeDisplay">0:00</div>
+                          
+                          <button class="mute-btn" id="muteBtn">
+                              <svg class="volume-icon" viewBox="0 0 24 24">
+                                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                              </svg>
+                          </button>
+                      </div>
+                </ul>
+            </div>
+        </div>
+        <!-- 登入注册 -->
+        <div class="user-profile">
+            <ul class="nav-menu">
+                <a href="#" id="openLoginModal" class="tooltip" data-tooltip="登入注册">
+                    <img src="../img/HomeImg/Register.png"  >
+                </a>
+            </ul>
+            <!-- 搜索框 -->
+            <form id="content">
+                <input type="text" name="input" class="input" id="search-input">
+                <button type="reset" class="search" id="search-btn"></button>
+            </form>
+            <div class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </nav> 
+    <!-- 垂直导航栏 -->
+    <div class="tabs">
+        <input type="radio" name="tab" id="tab-01" />
+        <label for="tab-01">
+            <svg>
+                <use xlink:href="#icon-01" class="icon" />
+            </svg>
+            <div class="wave"></div>
+        </label>
+        <input type="radio" name="tab" id="tab-02" />
+        <label for="tab-02">
+            <svg>
+                <use xlink:href="#icon-02" class="icon" />
+            </svg>
+            <div class="wave"></div>
+        </label>
+        <input type="radio" name="tab" id="tab-03" />
+        <label for="tab-03">
+            <svg>
+                <use xlink:href="#icon-03" class="icon" />
+            </svg>
+            <div class="wave"></div>
+        </label> 
+    
+    <!-- SVG 图标定义 -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol   viewBox="0 0 1024 1024" id="icon-01" >
+      <path d="M958.542769 540.711385c-3.702154-50.333538-13.174154-100.391385-27.451077-144.836923-21.897846-68.135385-54.567385-133.159385-92.002461-183.236924-10.24-13.666462-30.011077-16.777846-44.248616-6.971076a29.577846 29.577846 0 0 0-7.286153 42.397538c33.555692 44.839385 62.976 103.699692 82.963692 165.730462 12.839385 40.034462 21.425231 85.366154 24.753231 131.170461 12.209231 166.892308-59.372308 303.222154-197.769847 380.553846-22.665846-178.825846-167.227077-237.174154-173.883076-239.812923a32.886154 32.886154 0 0 0-27.332924 1.634462c-125.853538 67.032615-162.500923 179.515077-173.134769 242.451692-124.534154-62.838154-200.251077-181.169231-200.251077-317.558154 0-91.864615 47.694769-176.994462 145.782154-260.155077 13.036308-11.067077 26.328615-21.956923 39.620923-32.846769 72.034462-58.958769 146.589538-119.926154 184.123077-212.676923 4.115692-10.003692 7.68-19.081846 10.673231-27.273846 66.363077 44.780308 209.979077 165.671385 256.590769 396.937846 3.328 16.502154 20.027077 27.254154 37.12 24.064 17.211077-3.150769 28.455385-19.101538 25.107692-35.584C757.523692 145.073231 526.001231 18.865231 499.672615 5.415385c-0.886154-0.492308-1.811692-0.905846-2.756923-1.378462-15.694769-7.148308-34.461538-0.886154-42.141538 14.040615-2.166154 4.233846-3.190154 8.743385-3.268923 13.193847-2.953846 11.224615-15.320615 45.942154-18.116923 53.228307-31.822769 78.513231-97.142154 131.938462-166.262154 188.49477-13.587692 11.106462-27.116308 22.232615-40.467692 33.516307-110.907077 94.089846-167.128615 196.923077-167.128616 305.723077 0 175.537231 107.027692 325.513846 279.315692 391.286154a32.649846 32.649846 0 0 0 29.617231-3.190154c8.723692-5.671385 13.922462-15.222154 13.824-25.324308-0.039385-6.183385 0.472615-147.574154 130.599385-226.500923 34.363077 18.944 124.219077 82.077538 124.219077 225.378462 0 10.358154 5.454769 20.027077 14.493538 25.6 9.058462 5.572923 20.460308 6.419692 30.267077 2.107077 188.337231-81.900308 291.780923-254.227692 276.676923-460.878769M464.580923 56.083692" fill="#000000" p-id="1852"></path> 
+    </symbol>
+    <symbol   viewBox="0 0 1024 1024" id="icon-02">
+      <path d="M523.946667 85.333333C802.773333 85.333333 982.826667 307.541333 982.826667 511.338667c0 242.837333-197.397333 448-458.837334 448-84.16 0-150.464-16.597333-221.610666-55.402667l-88.618667 50.197333c-27.797333 8.426667-50.474667 5.162667-68.010667-9.834666-17.557333-14.997333-25.130667-34.730667-22.72-59.2a19570.688 19570.688 0 0 0 29.653334-106.368C123.008 741.76 64 656.426667 64 511.338667 64 307.541333 245.141333 85.333333 523.946667 85.333333z m-1.28 64C304.064 149.333333 128 317.12 128 522.666667c0 77.354667 24.874667 151.125333 70.634667 213.184l5.397333 7.125333 18.218667 23.509333-36.970667 128.746667a0.32 0.32 0 0 0 0.490667 0.384l113.408-63.829333 26.752 14.592C385.237333 878.72 452.544 896 522.666667 896 741.269333 896 917.333333 728.213333 917.333333 522.666667S741.269333 149.333333 522.666667 149.333333z m-192 320a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.848 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m182.869333 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z" fill="#111111" p-id="2008"></path> 
+    </symbol>
+    <symbol   viewBox="0 0 1024 1024" id="icon-03"> 
+      <path d="M900.48 85.333333C921.6 85.333333 938.666667 102.421333 938.666667 123.52v509.738667C938.666667 801.941333 801.92 938.666667 633.258667 938.666667H123.52A38.186667 38.186667 0 0 1 85.333333 900.48V390.762667C85.333333 222.058667 222.08 85.333333 390.741333 85.333333H900.48zM874.666667 149.333333H390.741333C259.498667 149.333333 152.725333 254.08 149.418667 384.512L149.333333 390.741333V874.666667h483.925334c131.242667 0 238.016-104.746667 241.322666-235.178667l0.085334-6.229333V149.333333z m-362.666667 152.896c115.84 0 209.770667 93.909333 209.770667 209.770667 0 115.84-93.909333 209.770667-209.770667 209.770667-115.84 0-209.770667-93.909333-209.770667-209.770667 0-115.84 93.909333-209.770667 209.770667-209.770667z m0 64a145.770667 145.770667 0 1 0 0 291.541334 145.770667 145.770667 0 0 0 0-291.541334z" fill="#111111" p-id="1852"></path>
+    </symbol>
+    </svg>
+    </div>
+     <!-- 引导系统 -->
+     <div class="guide-overlay" id="guideOverlay">
+        <div class="guide-box">
+            <h3 id="guideTitle">读者引导</h3>
+            <p id="guideText">让我们了解这个页面的主要功能</p>
+            <div class="guide-progress" id="guideProgress">1/8</div>
+            <div class="guide-nav">
+                <div>
+                    <button  id="prevGuideStep" disabled>上一步</button>
+                    <button  id="nextGuideStep">下一步</button>
+                </div>
+                <button  id="closeGuide">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+   <!-- 登录/注册模态框 -->
+   <div class="modal-overlay" id="authModal">
+    <div class="modal-container">
+        <div  class="close-modal" id="closeModal">&times;</div>
+ 
+        <div class="welcome">
+            <div class="pinkbox">
+                <div class="signup nodisplay">
+                    <h1>注册</h1>
+                    <form autocomplete="off">
+                        <input type="text" class="auth-input" placeholder="账户">
+                        <input type="email" class="auth-input" placeholder="邮箱">
+                        <input type="password" class="auth-input" placeholder="密码">
+                        <input type="password" class="auth-input" placeholder="确认密码">
+                        <button style="font-size: 1rem;" class="button submit">创建</button>
+                    </form>
+                </div>
+                <div class="signin">
+                    <h1>登录</h1>
+                    <form class="more-padding" autocomplete="off">
+                        <input type="text" class="auth-input" placeholder="账户">
+                        <input type="password" class="auth-input" placeholder="密码">
+                        <div class="checkbox">
+                            <input type="checkbox" id="remember" class="auth-checkbox" />
+                            <label  style="font-size: 1rem;" for="remember">记住我</label>
+                        </div>
+                        <button style="font-size: 1rem;" class="button submit">登录</button>
+                    </form>
+                </div>
+            </div>
+            <div class="leftbox">
+                <h2 class="title">探索<span>四大名著</span>世界</h2>
+                <img class="flower smaller" src="../img/HomeImg/lo.png" alt="Flower" border="0">
+                <p style="font-size: 1rem;" class="account">已有账号？</p>
+                <button style="font-size: 1rem;" class="button" id="modalSigninBtn">登录</button>
+            </div>
+            <div class="rightbox">
+                <h2 class="title">共建<span>文学</span><br>社区</h2>
+                <img class="flower" src="../img/HomeImg/re.png" alt="Flower"/>
+                <p style="font-size: 1rem;" class="account">首次光临？</p>
+                <button style="font-size: 1rem;" class="button" id="modalSignupBtn">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 谋士数据
+            const advisors = [
+                {
+                    name: "诸葛亮",
+                    title: "卧龙先生 · 蜀汉丞相",
+                    description: "你像诸葛亮一样足智多谋，善于运筹帷幄。你考虑问题全面，做事谨慎，重视道德和原则。你擅长长远规划，有'未出茅庐，已知三分天下'的战略眼光。但有时可能过于追求完美，事必躬亲。",
+                      traits: ["深谋远虑", "忠诚正直", "谨慎周密", "博学多才"]
+                },
+                {
+                    name: "周瑜",
+                    title: "美周郎 · 东吴大都督",
+                    description: "你像周瑜一样才华横溢，风度翩翩。你反应敏捷，善于随机应变，在关键时刻能做出果断决策。你有'谈笑间，樯橹灰飞烟灭'的自信与魅力。但你可能有些骄傲，不喜欢被他人超越，容易'既生瑜，何生亮'的感慨。",
+                     traits: ["才华横溢", "风度翩翩", "果断决绝", "骄傲自信"]
+                },
+                {
+                    name: "司马懿",
+                    title: "冢虎 · 晋宣帝",
+                    description: "你像司马懿一样深谋远虑，善于隐忍。你懂得审时度势，能在不利环境中寻找机会。你有'忍辱负重，终成大业'的耐心与毅力。你观察力敏锐，但有时可能过于谨慎，'空城计'中错失良机。",
+                     traits: ["隐忍待机", "深藏不露", "审时度势", "野心勃勃"]
+                },
+                {
+                    name: "郭嘉",
+                    title: "鬼才 · 曹操谋士",
+                    description: "你像郭嘉一样思维敏捷，见解独到。你善于分析形势，能快速抓住问题的关键。你有'十胜十败'的犀利分析能力。你性格洒脱不羁，但有时可能不够重视自身健康，如同郭嘉英年早逝。",
+                      traits: ["见解独到", "洒脱不羁", "洞察先机", "不拘小节"]
+                },
+                {
+                    name: "庞统",
+                    title: "凤雏 · 蜀汉军师",
+                    description: "你像庞统一样才华横溢但性格直率。你有独特的见解和创新的思维，'连环计'展现你的非凡才智。但你可能因为过于直接而得罪他人，如同庞统直言得罪刘备被贬。",
+                     traits: ["才华出众", "直言不讳", "创新思维", "不拘礼法"]
+                },
+                {
+                    name: "荀彧",
+                    title: "王佐之才 · 曹操谋士",
+                    description: "你像荀彧一样识人善任，顾全大局。你有'举贤任能'的伯乐眼光和'持重守正'的道德操守。你善于协调各方关系，但可能过于理想主义，最终与曹操分道扬镳。",
+                     traits: ["识人善任", "顾全大局", "道德高尚", "理想主义"]
+                },
+                {
+                    name: "贾诩",
+                    title: "毒士 · 曹魏谋士",
+                    description: "你像贾诩一样洞察人性，善于自保。你总能找到最有利的生存策略，'一言乱武'展现你对人性的深刻理解。但你有时可能过于明哲保身，缺乏担当。",
+                     traits: ["洞察人性", "明哲保身", "谋略深远", "冷静理智"]
+                }
+            ];
+
+            // 测试问题
+            const questions = [
+                {
+                    question: "1. 面对复杂问题时，你的第一反应是？",
+                    options: [
+                        { text: "制定长期计划，考虑各种可能性", traits: ["深谋远虑", "谨慎周密"] },
+                        { text: "快速抓住关键，提出创新解决方案", traits: ["见解独到", "创新思维"] },
+                        { text: "先观察形势，等待最佳时机", traits: ["隐忍待机", "审时度势"] },
+                        { text: "寻求他人意见，集思广益", traits: ["识人善任", "顾全大局"] }
+                    ]
+                },
+                {
+                    question: "2. 在团队中，你通常扮演什么角色？",
+                    options: [
+                        { text: "战略规划者，指明方向", traits: ["深谋远虑", "博学多才"] },
+                        { text: "创意提出者，打破常规", traits: ["才华横溢", "创新思维"] },
+                        { text: "幕后观察者，关键时刻出手", traits: ["深藏不露", "洞察人性"] },
+                        { text: "协调沟通者，凝聚团队", traits: ["风度翩翩", "顾全大局"] }
+                    ]
+                },
+                {
+                    question: "3. 面对竞争对手时，你的策略是？",
+                    options: [
+                        { text: "用智慧和策略堂堂正正胜过对方", traits: ["忠诚正直", "道德高尚"] },
+                        { text: "直接较量，展示自己的优势", traits: ["骄傲自信", "才华出众"] },
+                        { text: "隐藏实力，寻找对方弱点", traits: ["野心勃勃", "冷静理智"] },
+                        { text: "不主动竞争，专注自我提升", traits: ["洒脱不羁", "不拘小节"] }
+                    ]
+                },
+                {
+                    question: "4. 你如何处理与他人的意见分歧？",
+                    options: [
+                        { text: "耐心说服，用逻辑和事实论证", traits: ["谨慎周密", "博学多才"] },
+                        { text: "坚持己见，相信自己的判断", traits: ["直言不讳", "不拘礼法"] },
+                        { text: "表面妥协，暗中按自己想法做", traits: ["深藏不露", "明哲保身"] },
+                        { text: "寻求折中方案，维护和谐", traits: ["识人善任", "顾全大局"] }
+                    ]
+                },
+                {
+                    question: "5. 你最重要的价值观是？",
+                    options: [
+                        { text: "忠诚与道德", traits: ["忠诚正直", "道德高尚"] },
+                        { text: "才华与成就", traits: ["才华横溢", "骄傲自信"] },
+                        { text: "权力与影响力", traits: ["野心勃勃", "审时度势"] },
+                        { text: "自由与创新", traits: ["洒脱不羁", "创新思维"] }
+                    ]
+                },
+                {
+                    question: "6. 在压力下，你的表现更倾向于？",
+                    options: [
+                        { text: "保持冷静，按计划行事", traits: ["谨慎周密", "冷静理智"] },
+                        { text: "灵感迸发，超常发挥", traits: ["才华出众", "见解独到"] },
+                        { text: "隐藏压力，不露声色", traits: ["隐忍待机", "深藏不露"] },
+                        { text: "寻求支持，分担压力", traits: ["顾全大局", "风度翩翩"] }
+                    ]
+                },
+                {
+                    question: "7. 你更欣赏哪种处世哲学？",
+                    options: [
+                        { text: "鞠躬尽瘁，死而后已", traits: ["忠诚正直", "道德高尚"] },
+                        { text: "大丈夫当雄飞，安能雌伏", traits: ["才华横溢", "骄傲自信"] },
+                        { text: "韬光养晦，以待天时", traits: ["深藏不露", "野心勃勃"] },
+                        { text: "逍遥自在，不为物役", traits: ["洒脱不羁", "不拘小节"] }
+                    ]
+                },
+                {
+                    question: "8. 面对失败时，你的态度是？",
+                    options: [
+                        { text: "深刻反省，完善自我", traits: ["谨慎周密", "博学多才"] },
+                        { text: "不甘失败，立即反击", traits: ["直言不讳", "才华出众"] },
+                        { text: "暂时退让，伺机再起", traits: ["审时度势", "明哲保身"] },
+                        { text: "看淡得失，顺其自然", traits: ["不拘礼法", "洒脱不羁"] }
+                    ]
+                },
+                {
+                    question: "9. 你更倾向于哪种决策方式？",
+                    options: [
+                        { text: "收集全面信息后慎重决定", traits: ["深谋远虑", "谨慎周密"] },
+                        { text: "凭直觉和灵感快速决策", traits: ["见解独到", "创新思维"] },
+                        { text: "观察他人选择后再决定", traits: ["洞察人性", "冷静理智"] },
+                        { text: "考虑各方利益后平衡决策", traits: ["顾全大局", "识人善任"] }
+                    ]
+                },
+                {
+                    question: "10. 你希望后人如何评价你？",
+                    options: [
+                        { text: "忠诚正直的楷模", traits: ["忠诚正直", "道德高尚"] },
+                        { text: "才华横溢的天才", traits: ["才华横溢", "风度翩翩"] },
+                        { text: "成就非凡的赢家", traits: ["野心勃勃", "审时度势"] },
+                        { text: "特立独行的智者", traits: ["创新思维", "不拘礼法"] }
+                    ]
+                }
+            ];
+
+            // 初始化测试
+            let currentQuestion = 0;
+            let userTraits = {};
+            const questionContainer = document.getElementById('question-container');
+            const resultContainer = document.getElementById('result-container');
+            const resultContent = document.getElementById('result-content');
+            const nextBtn = document.getElementById('next-btn');
+            const retryBtn = document.getElementById('retry-btn');
+            const progressBar = document.getElementById('progress-bar');
+
+            // 显示问题
+            function showQuestion() {
+                updateProgressBar();
+                const question = questions[currentQuestion];
+                let html = `
+                    <div class="question">
+                        <h4>${question.question}</h4>
+                        <div class="options">
+                `;
+
+                question.options.forEach((option, index) => {
+                    html += `
+                        <div class="option" data-index="${index}">
+                            ${option.text}
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+                questionContainer.innerHTML = html;
+
+                // 添加选项点击事件
+                document.querySelectorAll('.option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        // 移除之前的选择
+                        document.querySelectorAll('.option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        
+                        // 标记当前选择
+                        this.classList.add('selected');
+                        nextBtn.disabled = false;
+                    });
+                });
+            }
+
+            // 更新进度条
+            function updateProgressBar() {
+                const progress = ((currentQuestion) / questions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            // 下一题
+            nextBtn.addEventListener('click', function() {
+                const selectedOption = document.querySelector('.option.selected');
+                if (!selectedOption) return;
+                
+                // 记录特质
+                const selectedTraits = questions[currentQuestion].options[selectedOption.dataset.index].traits;
+                selectedTraits.forEach(trait => {
+                    userTraits[trait] = (userTraits[trait] || 0) + 1;
+                });
+
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    nextBtn.disabled = true;
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            });
+
+            // 显示结果
+            function showResult() {
+                // 计算得分最高的特质
+                const sortedTraits = Object.entries(userTraits).sort((a, b) => b[1] - a[1]);
+                const topTraits = sortedTraits.slice(0, 4).map(item => item[0]);
+                
+                // 寻找匹配的谋士
+                let bestMatch = advisors[0];
+                let maxScore = 0;
+                
+                advisors.forEach(advisor => {
+                    let score = 0;
+                    advisor.traits.forEach(trait => {
+                        if (topTraits.includes(trait)) {
+                            score++;
+                        }
+                    });
+                    
+                    if (score > maxScore || (score === maxScore && Math.random() > 0.5)) {
+                        maxScore = score;
+                        bestMatch = advisor;
+                    }
+                });
+
+                // 显示结果
+                resultContent.innerHTML = `
+                    <div class="advisor-result">
+                         <h3 class="advisor-name">${bestMatch.name}</h3>
+                        <p class="advisor-title">${bestMatch.title}</p>
+                        <div class="traits">
+                            ${topTraits.map(trait => `<span class="trait">${trait}</span>`).join('')}
+                        </div>
+                        <div class="advisor-desc">
+                            <p>${bestMatch.description}</p>
+                            <p>你的主要特质与${bestMatch.name}${maxScore >= 3 ? '高度' : maxScore >= 2 ? '较为' : ''}匹配。</p>
+                        </div>
+                    </div>
+                `;
+                
+                questionContainer.style.display = 'none';
+                nextBtn.style.display = 'none';
+                resultContainer.style.display = 'block';
+                progressBar.style.width = '100%';
+            }
+
+            // 重新测试
+            retryBtn.addEventListener('click', function() {
+                currentQuestion = 0;
+                userTraits = {};
+                questionContainer.style.display = 'block';
+                nextBtn.style.display = 'block';
+                nextBtn.disabled = true;
+                resultContainer.style.display = 'none';
+                showQuestion();
+            });
+
+            // 开始测试
+            showQuestion();
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <script src="../js/script.js"></script>
+    <script src="../js/guide.js"></script>
+    
+</body>
+</html>

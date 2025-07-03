@@ -1,0 +1,241 @@
+ 
+.container { 
+    margin: auto;
+    width: 650px;
+    height: 550px;
+    position: relative;
+}
+
+.welcome { 
+    right: -38vh;
+    background: #f6f6f6;
+    width: 650px;
+    height: 415px;
+    position: absolute;
+    top: -25vh;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.1);
+}
+
+.pinkbox {
+    position: absolute;
+    top: -10%;
+    left: 5%;
+    background: #EAC7CC;
+    width: 320px;
+    height: 500px;
+    border-radius: 5px;
+    box-shadow: 2px 0 10px rgba(0,0,0,.1);
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+}
+.modal-container .close-modal{
+    top: -28vh;
+    left: 32vh;
+    font-size: xx-large;
+}
+.nodisplay {
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.leftbox, .rightbox {
+    position: absolute;
+    width: 50%;
+    transition: 1s all ease;
+}
+
+.leftbox {
+    left: -2%;
+}
+.rightbox {
+    right: -2%;
+}
+
+/* font & button styling */
+h1 { 
+    text-align: center;
+    margin-top: 95px;
+    text-transform: uppercase;
+    color: #f6f6f6;
+    font-size: 2em;
+    letter-spacing: 8px;
+}
+
+.title { 
+    color: #8E9AAF;
+    font-size: 1.8em;
+    line-height: 1.1em;
+    letter-spacing: 3px;
+    text-align: center;
+    font-weight: 300;
+    margin-top: 20%;
+} 
+.account { 
+    margin-top: 55%;
+    font-size: 10px;
+}
+p {  
+    top: 20px;  
+    text-align: center;
+}
+
+span {
+    color: #EAC7CC;
+}
+
+.flower {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    top: 36%;
+    left: 29%;
+    opacity: 0.7;
+}
+
+.smaller {
+    width: 180px;
+    height: 120px;
+    top: 38%;
+    left: 22%;
+    opacity: 0.9;
+}
+
+.modal-container button {
+    padding: 12px; 
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+    border-radius: 10px;
+    margin: auto;
+    outline: none;
+    display: block;
+}
+.modal-container button:hover {
+    background: #EAC7CC;
+    color: #f6f6f6;
+    transition: background-color 1s ease-out;
+}
+
+.modal-container .button {
+    margin-top: 3%;
+    background: #f6f6f6;
+    color: #d19fa9;
+    border: solid 1px #EAC7CC;
+}
+
+/* form styling */
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 7px;
+}
+.more-padding {
+    padding-top: 35px;
+}
+.more-padding input {
+    padding: 12px;
+}
+.more-padding .submit {
+    margin-top: 45px;
+}
+.submit {
+    margin-top: 25px;
+    padding: 12px;
+    border-color:#d19fa9;
+}
+.submit:hover {
+    background: #CBC0D3;
+    border-color: #b8a9c2;
+}
+
+/* 登录注册表单专用输入框样式 */
+.auth-input {
+    background: #EAC7CC !important;
+    width: 65% !important;
+    color: #d19fa9 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+    padding: 9px !important;
+    margin: 7px !important;
+}
+
+.auth-input::placeholder {
+    color: rgba(255, 255, 255, 1) !important;
+    letter-spacing: 2px !important;
+    font-size: 1.3em !important;
+    font-weight: 100 !important;
+}
+
+.auth-input:focus {
+    color: #d19fa9 !important;
+    outline: none !important;
+    border-bottom: 1.2px solid rgba(209, 159, 169, 0.7) !important;
+    font-size: 1em !important;
+    transition: 0.8s all ease !important;
+}
+
+.auth-input:focus::placeholder {
+    opacity: 0 !important;
+}
+
+/* 复选框样式 */
+.auth-checkbox {
+    width: 7px !important;
+    background: #d19fa9 !important;
+}
+
+label {
+    color: #d19fa9;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.checkbox {
+    display: inline;
+    white-space: nowrap;
+    position: relative;
+    left: -62px;
+    top: 5px;
+}
+
+.auth-checkbox{ 
+  appearance: none;
+  -webkit-appearance: none;  
+  border: 1px solid #d19fa9;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+  transform: scale(0.5); /* 关键缩放 */
+}
+/* 选中状态 */
+.auth-checkbox:checked {
+    background-color: #d19fa9;
+    border-color: #d19fa9;
+  }
+  
+  /* 选中后的中心白点 */
+  .auth-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+input[type=checkbox] {
+    width: 7px;
+    background: #d19fa9;
+}
+
+.checkbox input[type="checkbox"]:checked + label {
+    color: #d19fa9;
+    transition: 0.5s all ease;
+}
