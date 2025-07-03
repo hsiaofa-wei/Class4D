@@ -58,4 +58,17 @@ EC-Cup/
 │   │   └── ... 
 │   ├── music.mp3
 │   └── ...    
+├── SomeShow/  
+│   ├── show(1).png
+│   ├── show(2).png
+│   ├── ...
 └── README.md 
+```
+![部分截图预览](SomeShow/show(1).png)
+![部分截图预览](SomeShow/show(2).png)
+![部分截图预览](SomeShow/show(3).png)
+![部分截图预览](SomeShow/show(4).png)
+![部分截图预览](SomeShow/show(5).png)
+![部分截图预览](SomeShow/show(6).png)
+![部分截图预览](SomeShow/show(7).png)
+>更多可以下载观看
