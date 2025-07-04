@@ -73,4 +73,4 @@ EC-Cup/
 ![部分截图预览](SomeDisplays/show(5).png)
 ![部分截图预览](SomeDisplays/show(6).png)
 ![部分截图预览](SomeDisplays/show(7).png)
->更多可以下载观看
+>更多内容请您下载观看
